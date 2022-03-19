@@ -1,0 +1,10 @@
+<svg id="Group_31" data-name="Group 31" xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 30 28">
+  <g id="Group_28" data-name="Group 28" transform="translate(0 16)">
+    <path id="Polygon_48" data-name="Polygon 48" d="M6,0l6,6H0Z" transform="translate(30) rotate(90)" fill="#b6b6b7"/>
+    <line id="Line_20" data-name="Line 20" x2="24" transform="translate(0 6)" fill="none" stroke="#b6b6b7" stroke-width="4"/>
+  </g>
+  <g id="Group_29" data-name="Group 29">
+    <path id="Polygon_48-2" data-name="Polygon 48" d="M6,0l6,6H0Z" transform="translate(0 12) rotate(-90)" fill="#b6b6b7"/>
+    <line id="Line_20-2" data-name="Line 20" x1="24" transform="translate(6 6)" fill="none" stroke="#b6b6b7" stroke-width="4"/>
+  </g>
+</svg>
