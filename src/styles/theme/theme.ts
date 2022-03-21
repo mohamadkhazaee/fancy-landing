@@ -1,5 +1,4 @@
 import { createTheme as createMuiTheme } from "@mui/material/styles";
-import { MuiButton } from "./components/button";
 
 // Create a theme instance.
 export const createTheme = () => {
@@ -11,12 +10,21 @@ export const createTheme = () => {
         secondary: "#B6B6B6",
       },
       primary: {
-        main: "#9cf8b3",
+        main: "#202121",
       },
       divider: "#343535",
+      neutral: {
+        n1: "#202121",
+        n2: "#1b1b1b",
+        n3: "#252526",
+        n4: "#343637",
+      },
     },
     typography: {
       fontFamily: "Cairo",
+      caption: {
+        fontSize: "0.85rem",
+      },
     },
     components: {
       MuiButton: {

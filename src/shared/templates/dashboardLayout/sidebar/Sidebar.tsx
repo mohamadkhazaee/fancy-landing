@@ -6,13 +6,17 @@ import SwapIcon from "src/icons/SwapIcon.svg";
 import WalletIcon from "src/icons/WalletIcon.svg";
 import NFTIcon from "src/icons/NFTIcon.svg";
 import GameIcon from "src/icons/GameIcon.svg";
+import { useTheme } from "@mui/material";
+import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 export function Sidebar() {
   return (
     <Box
       sx={{
-        width: "250px",
+        width: SIDEBAR_SIZE,
         height: "calc( 100vh - 60px )",
-        backgroundColor: "#202221",
+        position: "fixed",
+        top: HEADER_SIZE,
+        backgroundColor: "neutral.n1",
         display: "flex",
         flexDirection: "column",
         alignItems: "space-between",

@@ -10,5 +10,29 @@ declare module "@mui/material/styles" {
       danger?: string;
     };
   }
+  interface Palette {
+    neutral: {
+      n1: string;
+      n2: string;
+      n3: string;
+      n4: string;
+    };
+  }
+  interface PaletteOptions {
+    neutral: {
+      n1: string;
+      n2: string;
+      n3: string;
+      n4: string;
+    };
+  }
+
+  interface PaletteColor {
+    darker?: string;
+  }
+  interface SimplePaletteColorOptions {
+    darker?: string;
+  }
 }
+
 export {};

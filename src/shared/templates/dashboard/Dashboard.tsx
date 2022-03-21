@@ -1,18 +1,45 @@
-import { Box, Button, Typography } from "@mui/material";
-import { Header } from "./Header";
-import { Sidebar } from "./sidebar/Sidebar";
+import { Button, Grid, Box, Chip } from "@mui/material";
+import { DashboardLayout } from "../dashboardLayout";
+import { InfoWidget } from "./InfoWidget";
+import { PoolTableRow } from "src/shared/templates/pools";
 export function Dashboard() {
   return (
-    <Box sx={{ overflow: "none" }}>
-      <Header />
-      <Box display="flex" sx={{ pt: "60px", background: "#1b1b1b" }}>
-        <Sidebar />
-        <Box sx={{ my: 4, mx: 10 }}>
-          <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
-            Dashboard
-          </Typography>
-        </Box>
-      </Box>
-    </Box>
+    <DashboardLayout title="Dashboard">
+      <Grid container spacing={3}>
+        <Grid item xs={4}>
+          <InfoWidget
+            title="Portfolio Balance"
+            value="$5,100.85"
+            action={<Button>withdraw</Button>}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <InfoWidget
+            title="Loyalty Level"
+            value="Base"
+            action={<Button>Upgrade</Button>}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <InfoWidget
+            title="Portfolio Balance"
+            value="$5,100.85"
+            action={<Button>withdraw</Button>}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <InfoWidget title="Pools">
+            <Box>
+              <Chip
+                sx={{ bgcolor: "neutral.n4", mt: 3, mb: 1, px: 0 }}
+                label="High APR, low risk."
+              />
+              <PoolTableRow status="live" />
+              <PoolTableRow status="soon" />
+            </Box>
+          </InfoWidget>
+        </Grid>
+      </Grid>
+    </DashboardLayout>
   );
 }
