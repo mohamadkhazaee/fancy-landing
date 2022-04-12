@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="435.025" height="461.659" viewBox="0 0 435.025 461.659">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e32132"/>
+      <stop offset="0.151" stop-color="#c5262c"/>
+      <stop offset="0.36" stop-color="#a42d47"/>
+      <stop offset="0.556" stop-color="#c53b5b"/>
+      <stop offset="0.77" stop-color="#57272d"/>
+      <stop offset="1" stop-color="#9d2123"/>
+    </radialGradient>
+  </defs>
+  <g id="Component_8_2" data-name="Component 8 – 2" transform="matrix(-0.866, -0.5, 0.5, -0.866, 269.28, 479.734)">
+    <path id="Path_2" data-name="Path 2" d="M0,0,78.655,17.89,36.063,41.741Z" transform="translate(254.144 73.541)" fill="url(#radial-gradient)"/>
+    <path id="Path_4" data-name="Path 4" d="M0,0,53.39,58.162,0,47.518Z" transform="translate(174.196 0)" fill="url(#radial-gradient)"/>
+    <path id="Path_3" data-name="Path 3" d="M0,0,122.1,70.139,50.847,56Z" transform="translate(193.092 7.377)" fill="url(#radial-gradient)"/>
+    <path id="Path_5" data-name="Path 5" d="M53.39,0,0,58.162,53.39,47.518Z" transform="translate(112.129)" fill="url(#radial-gradient)"/>
+    <path id="Path_6" data-name="Path 6" d="M78.655,0,0,17.89,42.592,41.741Z" transform="translate(5.768 73.541)" fill="url(#radial-gradient)"/>
+    <path id="Path_7" data-name="Path 7" d="M122.1,0,0,70.139,71.255,56Z" transform="translate(23.373 7.377)" fill="url(#radial-gradient)"/>
+    <path id="Path_8" data-name="Path 8" d="M0,38.663,67.709,0,26.954,7.585Z" transform="translate(73.219 61.332)" fill="url(#radial-gradient)"/>
+    <path id="Subtraction_5" data-name="Subtraction 5" d="M2.805,183.667h0L25.128,97.856,0,162.958V19.608L16.137,57.545,3.16,0,41.485,22.569l-2.9,33.543,6.561-14.03V159.015L2.815,183.67Z" transform="translate(0 97.947)" fill="url(#radial-gradient)"/>
+    <path id="Path_10" data-name="Path 10" d="M53.39,58.162,0,0,53.39,10.644Z" transform="translate(112.129 321.185)" fill="url(#radial-gradient)"/>
+    <path id="Path_11" data-name="Path 11" d="M78.657,41.741,0,23.849,42.595,0Z" transform="translate(5.765 264.065)" fill="url(#radial-gradient)"/>
+    <path id="Path_12" data-name="Path 12" d="M122.1,70.139,0,0,71.257,14.143Z" transform="translate(23.371 301.832)" fill="url(#radial-gradient)"/>
+    <path id="Path_13" data-name="Path 13" d="M0,0,67.709,38.663,26.954,31.078Z" transform="translate(73.219 279.354)" fill="url(#radial-gradient)"/>
+    <path id="Path_14" data-name="Path 14" d="M0,41.741,78.657,23.849,36.063,0Z" transform="translate(254.144 264.065)" fill="url(#radial-gradient)"/>
+    <path id="Path_15" data-name="Path 15" d="M0,58.162,53.39,0,0,10.644Z" transform="translate(174.196 321.185)" fill="url(#radial-gradient)"/>
+    <path id="Path_16" data-name="Path 16" d="M0,70.139,122.1,0,50.847,14.143Z" transform="translate(193.092 301.832)" fill="url(#radial-gradient)"/>
+    <g id="Component_7_1" data-name="Component 7 – 1" transform="translate(53.629 55.906)">
+      <path id="Subtraction_2" data-name="Subtraction 2" d="M116.307,67.214,0,0,6.319,1.231,3.493.908,62.818,30.117,25.352,4.938l44.316,8.633,46.642,53.64Z" transform="translate(115.796 0.061)" fill="url(#radial-gradient)"/>
+      <path id="Subtraction_1" data-name="Subtraction 1" d="M.006,87.624h0l4.3-35.2L105.079,0l10.976,20.587-48.33,53.52L27.257,82.184,74.349,50.541,2.075,87.21,0,87.624Z" transform="translate(116.049 180.086)" fill="url(#radial-gradient)"/>
+      <path id="Polygon_40" data-name="Polygon 40" d="M200.785,0l66.928,116.054L200.785,232.109H66.928L0,116.054,66.928,0Z" transform="translate(232.109 0) rotate(90)" fill="url(#radial-gradient)"/>
+    </g>
+    <path id="Subtraction_8" data-name="Subtraction 8" d="M2.805,0h0L25.129,85.812,0,20.711V164.062l16.137-37.937L3.16,183.671,41.485,161.1l-2.9-33.542,6.553,14.032V24.656L2.808,0Z" transform="translate(337.767 281.614) rotate(180)" fill="url(#radial-gradient)"/>
+  </g>
+</svg>

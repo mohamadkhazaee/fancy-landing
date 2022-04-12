@@ -47,6 +47,30 @@ export const createTheme = () => {
           },
         },
       },
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            width: "100%",
+            "& label.Mui-focused": {
+              color: "#8A8A8A",
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: "#8A8A8A",
+            },
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#8A8A8A",
+              },
+              "&:hover fieldset": {
+                borderColor: "#8A8A8A",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#8A8A8A",
+              },
+            },
+          },
+        },
+      },
     },
   });
   return createMuiTheme(initialTheme, {

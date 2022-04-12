@@ -6,36 +6,103 @@ import SwapIcon from "src/icons/SwapIcon.svg";
 import WalletIcon from "src/icons/WalletIcon.svg";
 import NFTIcon from "src/icons/NFTIcon.svg";
 import GameIcon from "src/icons/GameIcon.svg";
-import { useTheme } from "@mui/material";
+import TwitterIcon from "src/icons/TwitterIcon.svg";
+import MediumIcon from "src/icons/MediumIcon.svg";
+import TelegramIcon from "src/icons/TelegramIcon.svg";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
-export function Sidebar() {
+
+interface SidebarProps {
+  menu: boolean;
+}
+
+export function Sidebar({ menu }: SidebarProps) {
   return (
     <Box
       sx={{
-        width: SIDEBAR_SIZE,
-        height: "calc( 100vh - 60px )",
+        width: { xs: 0.8, md: SIDEBAR_SIZE },
+        height: { xs: 1, md: `calc( 100vh - ${HEADER_SIZE}px )` },
         position: "fixed",
-        top: HEADER_SIZE,
+        top: { xs: 0, md: HEADER_SIZE },
+        left: { xs: menu ? 0 : `-100%`, md: 0 },
         backgroundColor: "neutral.n1",
         display: "flex",
         flexDirection: "column",
         alignItems: "space-between",
         justifyContent: "space-between",
+        borderRight: "1px solid",
+        borderColor: "divider",
+        transition: "all ease-in .3s",
         pt: 3,
         pb: 2,
+        zIndex: 10000,
       }}
     >
       <MenuList sx={{ color: "text.primary" }}>
-        <SidebarMenuItem title="Dashboard" icon={DashboardIcon} />
-        <SidebarMenuItem title="Pools" icon={WalletIcon} />
-        <SidebarMenuItem title="Swap" icon={SwapIcon} soon />
-        <SidebarMenuItem title="NFT" icon={NFTIcon} soon />
-        <SidebarMenuItem title="Game" icon={GameIcon} soon />
+        <SidebarMenuItem
+          title="Dashboard"
+          href="/dashboard"
+          icon={
+            <SvgIcon
+              viewBox="0 0 36 30"
+              fontSize="small"
+              component={DashboardIcon}
+            />
+          }
+        />
+        <SidebarMenuItem
+          title="Pools"
+          href="/dashboard/pools"
+          icon={
+            <SvgIcon
+              viewBox="0 0 36 30"
+              fontSize="small"
+              component={WalletIcon}
+            />
+          }
+        />
+        <SidebarMenuItem
+          title="Swap"
+          icon={
+            <SvgIcon
+              viewBox="0 0 36 30"
+              fontSize="small"
+              component={SwapIcon}
+            />
+          }
+          soon
+        />
+        <SidebarMenuItem
+          title="NFT"
+          icon={
+            <SvgIcon viewBox="0 0 36 35" fontSize="small" component={NFTIcon} />
+          }
+          soon
+        />
+        <SidebarMenuItem
+          title="Game"
+          icon={
+            <SvgIcon
+              viewBox="0 0 36 15"
+              fontSize="small"
+              component={GameIcon}
+            />
+          }
+          soon
+        />
       </MenuList>
       <Box>
         <MenuList sx={{ color: "text.primary" }}>
-          <SidebarMenuItem title="Language" icon={ThemeIcon} soon />
-          <SidebarMenuItem title="Theme" icon={ThemeIcon} soon />
+          <SidebarMenuItem
+            title="Language"
+            icon={
+              <SvgIcon
+                viewBox="0 0 36 15"
+                fontSize="small"
+                component={GameIcon}
+              />
+            }
+            soon
+          />
         </MenuList>
         <Divider sx={{ mx: 2 }} />
         <Box
@@ -48,16 +115,25 @@ export function Sidebar() {
           }}
         >
           <IconButton>
-            <SvgIcon viewBox="0 0 30 30" component={DashboardIcon} />
+            <SvgIcon
+              viewBox="0 0 50 30"
+              fontSize="large"
+              component={TwitterIcon}
+            />
           </IconButton>
           <IconButton>
-            <SvgIcon viewBox="0 0 30 30" component={DashboardIcon} />
+            <SvgIcon
+              viewBox="0 0 50 30"
+              fontSize="medium"
+              component={MediumIcon}
+            />
           </IconButton>
           <IconButton>
-            <SvgIcon viewBox="0 0 30 30" component={DashboardIcon} />
-          </IconButton>
-          <IconButton>
-            <SvgIcon viewBox="0 0 30 30" component={DashboardIcon} />
+            <SvgIcon
+              viewBox="0 0 50 30"
+              fontSize="large"
+              component={TelegramIcon}
+            />
           </IconButton>
         </Box>
       </Box>

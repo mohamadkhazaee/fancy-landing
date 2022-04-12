@@ -6,21 +6,21 @@ export function Dashboard() {
   return (
     <DashboardLayout title="Dashboard">
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <InfoWidget
             title="Portfolio Balance"
             value="$5,100.85"
             action={<Button>withdraw</Button>}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <InfoWidget
             title="Loyalty Level"
             value="Base"
             action={<Button>Upgrade</Button>}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <InfoWidget
             title="Portfolio Balance"
             value="$5,100.85"

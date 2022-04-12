@@ -7,19 +7,27 @@ import {
   ListItemText,
   SvgIcon,
 } from "@mui/material";
-import Image from "next/image";
-import { ElementType } from "react";
+import { useRouter } from "next/router";
+import { ElementType, ReactNode } from "react";
 interface SidebarMenuItemProps {
   title: string;
-  icon: ElementType;
+  icon: ReactNode;
   soon?: boolean;
+  href?: string;
 }
-export function SidebarMenuItem({ title, icon, soon }: SidebarMenuItemProps) {
+export function SidebarMenuItem({
+  title,
+  icon,
+  soon,
+  href,
+}: SidebarMenuItemProps) {
+  const { push } = useRouter();
   return (
-    <MenuItem sx={{ display: "flex", py: 1.5 }}>
-      <ListItemIcon>
-        <SvgIcon viewBox="0 0 30 30" fontSize="small" component={icon} />
-      </ListItemIcon>
+    <MenuItem
+      onClick={() => (href ? push(href) : "")}
+      sx={{ display: "flex", py: 1.5 }}
+    >
+      <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText sx={{ color: "text.secondary" }}>{title}</ListItemText>
       {soon && (
         <Typography variant="body2" color="text.primary">

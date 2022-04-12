@@ -1,7 +1,7 @@
-import { Dashboard } from "../src/shared/templates/dashboard";
+import { Landing } from "../src/shared/templates/landing";
 
 const Home = () => {
-  return <Dashboard />;
+  return <Landing />;
 };
 
 export default Home;
