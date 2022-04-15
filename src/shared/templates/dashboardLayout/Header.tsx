@@ -71,7 +71,7 @@ export function Header({ toggleMenu }: HeaderProps) {
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
-        <Button variant="contained">CONNECT</Button>
+        <Button variant="outlined">CONNECT</Button>
       </Box>
     </Box>
   );

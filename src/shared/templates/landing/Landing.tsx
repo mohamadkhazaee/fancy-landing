@@ -25,7 +25,7 @@ export function Landing() {
             }}
           >
             <Image
-              src="/RedToken.svg"
+              src="/RedToken.png"
               width="200px"
               height="200px"
               alt="token"

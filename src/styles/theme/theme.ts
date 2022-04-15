@@ -10,7 +10,7 @@ export const createTheme = () => {
         secondary: "#B6B6B6",
       },
       primary: {
-        main: "#202121",
+        main: "#2F81F3",
       },
       divider: "#343535",
       neutral: {
@@ -32,13 +32,24 @@ export const createTheme = () => {
           root: {
             borderRadius: "100px",
             padding: "5px 30px",
-            background: "transparent",
-            color: "#fff",
-            border: "2px solid #fff",
             textTransform: "none",
             fontWeight: "bold",
           },
         },
+        variants: [
+          {
+            props: { variant: "outlined" },
+            style: {
+              background: "transparent",
+              color: "#fff",
+              border: "2px solid #fff",
+            },
+          },
+          {
+            props: { variant: "contained" },
+            style: {},
+          },
+        ],
       },
       MuiIconButton: {
         styleOverrides: {
@@ -47,9 +58,28 @@ export const createTheme = () => {
           },
         },
       },
+      MuiInputLabel: {
+        defaultProps: {
+          shrink: true,
+        },
+        styleOverrides: {
+          root: {
+            transform: "translateY(-35px)",
+            color: "#e8e8e8",
+          },
+        },
+      },
       MuiTextField: {
         styleOverrides: {
           root: {
+            "& fieldset": {
+              top: 0,
+              "& legend": {
+                display: "none",
+              },
+            },
+
+            marginTop: "30px",
             width: "100%",
             "& label.Mui-focused": {
               color: "#8A8A8A",
