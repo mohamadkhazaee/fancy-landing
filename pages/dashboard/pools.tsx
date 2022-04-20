@@ -1,4 +1,4 @@
-import { Pools } from "../../src/shared/templates/pools";
+import { Pools } from "../../src/templates/pools";
 
 const PoolsPage = () => {
   return <Pools />;

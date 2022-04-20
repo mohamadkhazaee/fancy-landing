@@ -43,6 +43,9 @@ export const createTheme = () => {
               background: "transparent",
               color: "#fff",
               border: "2px solid #fff",
+              "&:hover": {
+                border: "2px solid #fff",
+              },
             },
           },
           {

@@ -1,6 +1,8 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { AuthGradiant } from "../shared/components/AuthGradiant";
+import { BgToken } from "../shared/components/BgToken";
 
 export function Login() {
   return (
@@ -15,30 +17,22 @@ export function Login() {
         position: "relative",
       }}
     >
-      <Box
-        sx={{ position: "absolute", top: 0, left: "10%", width: 1, height: 1 }}
-      >
-        <Image src="/LoginGradient.png" layout="fill" alt="token" />
-      </Box>
+      <AuthGradiant top={0} left="10%" src="/LoginGradient.png" />
       <Box sx={{ maxWidth: 480, width: 1, position: "relative" }}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "-13%",
-            right: "-23%",
-          }}
-        >
-          <Image src="/RedToken.png" width={200} height={200} alt="token" />
-        </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "-4%",
-            left: "-3%",
-          }}
-        >
-          <Image src="/RedToken.png" width={30} height={30} alt="token" />
-        </Box>
+        <BgToken
+          top="-13%"
+          right="-23%"
+          src="/RedToken.png"
+          imageWidth={200}
+          imageHeight={200}
+        />
+        <BgToken
+          bottom="-4%"
+          left="-3%"
+          src="/RedToken.png"
+          imageWidth={30}
+          imageHeight={30}
+        />
         <Box
           sx={{
             backgroundColor: "rgba(37,37,38,.6)",
@@ -99,11 +93,11 @@ export function Login() {
               </Link>
               <Box display="flex" alignItems="center">
                 <Typography variant="caption">
-                  Don't have an Account?
+                  Do Not have an Account?
                 </Typography>
                 <Link href="/forget-password" passHref>
                   <Button
-                    sx={{ maxWidth: "250px", mx: "auto", px: 0.75 }}
+                    sx={{ maxWidth: "250px", mx: "auto", px: 1 }}
                     variant="text"
                     component="a"
                   >

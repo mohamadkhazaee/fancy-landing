@@ -1,4 +1,4 @@
-import { Landing } from "../src/shared/templates/landing";
+import { Landing } from "../src/templates/landing";
 
 const Home = () => {
   return <Landing />;

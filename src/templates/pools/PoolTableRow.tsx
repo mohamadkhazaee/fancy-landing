@@ -66,7 +66,7 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
             height: 1,
           }}
         >
-          <Button>ENABLE</Button>
+          <Button variant="outlined">ENABLE</Button>
         </Box>
       </Grid>
     </Grid>

@@ -1,7 +1,7 @@
 import { Button, Grid, Box, Chip } from "@mui/material";
 import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "./InfoWidget";
-import { PoolTableRow } from "src/shared/templates/pools";
+import { PoolTableRow } from "src/templates/pools";
 export function Dashboard() {
   return (
     <DashboardLayout title="Dashboard">
@@ -10,21 +10,21 @@ export function Dashboard() {
           <InfoWidget
             title="Portfolio Balance"
             value="$5,100.85"
-            action={<Button>withdraw</Button>}
+            action={<Button variant="outlined">withdraw</Button>}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Loyalty Level"
             value="Base"
-            action={<Button>Upgrade</Button>}
+            action={<Button variant="outlined">Upgrade</Button>}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Portfolio Balance"
             value="$5,100.85"
-            action={<Button>withdraw</Button>}
+            action={<Button variant="outlined">withdraw</Button>}
           />
         </Grid>
         <Grid item xs={12}>

@@ -1,7 +1,7 @@
 import { Button, Grid, Box, Chip } from "@mui/material";
 import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "../dashboard/InfoWidget";
-import { PoolTableRow } from "src/shared/templates/pools";
+import { PoolTableRow } from "src/templates/pools";
 export function Pools() {
   return (
     <DashboardLayout title="Pools">

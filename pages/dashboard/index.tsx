@@ -1,4 +1,4 @@
-import { Dashboard } from "../../src/shared/templates/dashboard";
+import { Dashboard } from "../../src/templates/dashboard";
 
 const DashboardPage = () => {
   return <Dashboard />;

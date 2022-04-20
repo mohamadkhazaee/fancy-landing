@@ -1,4 +1,4 @@
-import { Login } from "../src/shared/templates/login";
+import { Login } from "../src/templates/auth";
 
 export default function LoginPage() {
   return <Login />;
