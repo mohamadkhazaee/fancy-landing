@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, Tooltip } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Children, PropsWithChildren, ReactNode } from "react";
 
@@ -22,13 +22,16 @@ export function InfoWidget({
         borderColor: "divider",
         py: 4,
         px: 2,
+        height: 1,
       }}
     >
       <Box display="flex">
         <Typography variant="h5">{title}</Typography>
-        <IconButton sx={{ ml: 2 }}>
-          <HelpOutlineIcon htmlColor="white" />
-        </IconButton>
+        <Tooltip title="something for now...">
+          <IconButton sx={{ ml: 1 }}>
+            <HelpOutlineIcon htmlColor="white" />
+          </IconButton>
+        </Tooltip>
       </Box>
       {value && (
         <Typography variant="h4" mt={1} mb={3}>

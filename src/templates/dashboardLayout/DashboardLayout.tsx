@@ -6,9 +6,11 @@ import { Sidebar } from "./sidebar/Sidebar";
 
 interface DashboardLayoutProps {
   title: string;
+  caption?: string;
 }
 export function DashboardLayout({
   title,
+  caption,
   children,
 }: PropsWithChildren<DashboardLayoutProps>) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,9 +37,17 @@ export function DashboardLayout({
           }}
         >
           <Box sx={{ height: "100%", maxWidth: "1080px", width: 1 }}>
-            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: "bold", mb: caption ? 0 : 2 }}
+            >
               {title}
             </Typography>
+            {caption && (
+              <Typography variant="caption" sx={{ mb: 3 }} component="p">
+                {caption}
+              </Typography>
+            )}
             {children}
           </Box>
         </Box>

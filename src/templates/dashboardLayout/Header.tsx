@@ -1,14 +1,15 @@
-import { Button, IconButton, SvgIcon } from "@mui/material";
+import { Button, IconButton, Menu, MenuItem, SvgIcon } from "@mui/material";
 import { Box } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
-
+import { useState } from "react";
 interface HeaderProps {
   toggleMenu: () => void;
 }
 export function Header({ toggleMenu }: HeaderProps) {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   return (
     <Box
       sx={{
@@ -42,7 +43,7 @@ export function Header({ toggleMenu }: HeaderProps) {
         }}
       >
         <Image src="/Logo.svg" width={100} height={40} alt="CRYPTAL Logo" />
-        <IconButton onClick={() => toggleMenu()}>
+        <IconButton onClick={toggleMenu}>
           <SvgIcon
             sx={{ display: { md: "none" } }}
             htmlColor="#fff"
@@ -68,11 +69,27 @@ export function Header({ toggleMenu }: HeaderProps) {
             border: "2px solid #fff",
             mr: 1,
           }}
+          onClick={(e) => setAnchorEl(e.currentTarget)}
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
         <Button variant="outlined">CONNECT</Button>
       </Box>
+      <Menu
+        anchorEl={anchorEl}
+        open={!!anchorEl}
+        onClose={() => setAnchorEl(null)}
+        sx={{
+          mt: 1,
+          "& .MuiPaper-root": {
+            backgroundColor: "neutral.n4",
+            minWidth: "100px",
+          },
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
     </Box>
   );
 }

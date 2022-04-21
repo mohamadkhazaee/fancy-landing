@@ -1,5 +1,4 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import { AuthGradiant } from "../shared/components/AuthGradiant";
 import { BgToken } from "../shared/components/BgToken";

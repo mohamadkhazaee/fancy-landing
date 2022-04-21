@@ -3,12 +3,13 @@ import { SidebarMenuItem } from "./SidebarMenuItem";
 import ThemeIcon from "src/icons/ThemeIcon.svg";
 import DashboardIcon from "src/icons/DashboardIcon.svg";
 import SwapIcon from "src/icons/SwapIcon.svg";
-import WalletIcon from "src/icons/WalletIcon.svg";
+import PortfolioIcon from "src/icons/PortfolioIcon.svg";
 import NFTIcon from "src/icons/NFTIcon.svg";
 import GameIcon from "src/icons/GameIcon.svg";
 import TwitterIcon from "src/icons/TwitterIcon.svg";
 import MediumIcon from "src/icons/MediumIcon.svg";
 import TelegramIcon from "src/icons/TelegramIcon.svg";
+import PoolsIcon from "src/icons/PoolsIcon.svg";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 
 interface SidebarProps {
@@ -50,13 +51,24 @@ export function Sidebar({ menu }: SidebarProps) {
           }
         />
         <SidebarMenuItem
-          title="Pools"
-          href="/dashboard/pools"
+          title="Portfolio"
+          href="/dashboard/portfolio"
           icon={
             <SvgIcon
               viewBox="0 0 36 30"
               fontSize="small"
-              component={WalletIcon}
+              component={PortfolioIcon}
+            />
+          }
+        />
+        <SidebarMenuItem
+          title="Pools"
+          href="/dashboard/pools"
+          icon={
+            <SvgIcon
+              viewBox="0 0 36 36"
+              fontSize="small"
+              component={PoolsIcon}
             />
           }
         />
