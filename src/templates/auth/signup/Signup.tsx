@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AuthGradiant } from "../shared/components/AuthGradiant";
 import { BgToken } from "../shared/components/BgToken";
 
-export function Login() {
+export function Signup() {
   return (
     <Box
       sx={{
@@ -16,21 +16,21 @@ export function Login() {
         position: "relative",
       }}
     >
-      <AuthGradiant top={0} left="10%" src="/BGred.svg" />
+      <AuthGradiant top={0} left="10%" src="/BGyellow.svg" />
       <Box sx={{ maxWidth: 480, width: 1, position: "relative" }}>
         <BgToken
-          top="-13%"
+          top="20%"
           right="-23%"
-          src="/RedToken.png"
-          imageWidth={200}
-          imageHeight={200}
+          src="/YellowToken.png"
+          imageWidth={250}
+          imageHeight={250}
         />
         <BgToken
-          bottom="-4%"
-          left="-3%"
-          src="/RedToken.png"
-          imageWidth={30}
-          imageHeight={30}
+          bottom="4%"
+          left="-6%"
+          src="/YellowToken.png"
+          imageWidth={60}
+          imageHeight={60}
         />
         <Box
           sx={{
@@ -48,7 +48,7 @@ export function Login() {
           }}
         >
           <Typography sx={{ fontWeight: "bold" }} variant="h4" mb={3}>
-            Login
+            Signup
           </Typography>
           <form autoComplete="off">
             <TextField
@@ -66,12 +66,19 @@ export function Login() {
               label="Password"
               name="passwordfelan"
             />
+            <TextField
+              sx={{ mb: 4 }}
+              type="password"
+              variant="outlined"
+              label="Repeat Password"
+              name="passwordfelan"
+            />
             <Button
               sx={{ py: 1.5, fontSize: "1.2rem" }}
               fullWidth
               variant="contained"
             >
-              Login
+              Create New Account
             </Button>
             <Box
               sx={{
@@ -81,26 +88,17 @@ export function Login() {
                 mt: 2,
               }}
             >
-              <Link href="/forget-password" passHref>
-                <Button
-                  sx={{ maxWidth: "250px", mx: "auto" }}
-                  variant="text"
-                  component="a"
-                >
-                  Forget Password
-                </Button>
-              </Link>
               <Box display="flex" alignItems="center">
                 <Typography variant="caption">
-                  Do Not have an Account?
+                  Already Have a Cryptal Account?
                 </Typography>
-                <Link href="/signup" passHref>
+                <Link href="/login" passHref>
                   <Button
                     sx={{ maxWidth: "250px", mx: "auto", px: 1 }}
                     variant="text"
                     component="a"
                   >
-                    New Account
+                    Login
                   </Button>
                 </Link>
               </Box>

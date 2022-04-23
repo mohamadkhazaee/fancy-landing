@@ -11,7 +11,7 @@ export function AuthGradiant({ top, left, src }: AuthGradiant) {
     <Box
       sx={{ position: "absolute", top: 0, left: "10%", width: 1, height: 1 }}
     >
-      <Image src="/LoginGradient.png" layout="fill" alt="token" />
+      <Image src={src} layout="fill" alt="token" />
     </Box>
   );
 }
