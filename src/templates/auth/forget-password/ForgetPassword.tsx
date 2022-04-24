@@ -4,26 +4,26 @@ import { AuthGradiant } from "../shared/components/AuthGradiant";
 import { BgToken } from "../shared/components/BgToken";
 import { AuthLayout } from "../shared/components/AuthLayout";
 import { FormWrapper } from "../shared/components/FormWrapper";
-export function Login() {
+export function ForgetPassword() {
   return (
-    <AuthLayout gradiantSrc="/BGred.svg">
+    <AuthLayout gradiantSrc="/BGblue.svg">
       <BgToken
         top="-13%"
         right="-23%"
-        src="/RedToken.png"
+        src="/BlueToken.png"
         imageWidth={200}
         imageHeight={200}
       />
       <BgToken
         bottom="-4%"
         left="-3%"
-        src="/RedToken.png"
+        src="/BlueToken.png"
         imageWidth={30}
         imageHeight={30}
       />
       <FormWrapper>
         <Typography sx={{ fontWeight: "bold" }} variant="h4" mb={3}>
-          Login
+          Forgot Password
         </Typography>
         <form autoComplete="off">
           <TextField
@@ -34,19 +34,12 @@ export function Login() {
             autoComplete="false"
             name="emailfelan"
           />
-          <TextField
-            sx={{ mb: 4 }}
-            type="password"
-            variant="outlined"
-            label="Password"
-            name="passwordfelan"
-          />
           <Button
             sx={{ py: 1.5, fontSize: "1.2rem" }}
             fullWidth
             variant="contained"
           >
-            Login
+            Reset Password
           </Button>
           <Box
             sx={{
@@ -56,13 +49,13 @@ export function Login() {
               mt: 2,
             }}
           >
-            <Link href="/forget-password" passHref>
+            <Link href="/login" passHref>
               <Button
                 sx={{ maxWidth: "250px", mx: "auto" }}
                 variant="text"
                 component="a"
               >
-                Forget Password
+                Login
               </Button>
             </Link>
             <Box display="flex" alignItems="center">
