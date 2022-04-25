@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
-
+import { rotation } from "src/shared/utils";
 interface AuthGradiant {
   top?: number | string;
   left?: number | string;
@@ -27,6 +27,7 @@ export function BgToken({
         ...(left && { left }),
         ...(right && { right }),
         ...(bottom && { bottom }),
+        //  animation: `${rotation} 60s infinite linear`,
       }}
     >
       <Image src={src} width={imageWidth} height={imageHeight} alt="token" />
