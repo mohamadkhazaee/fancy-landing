@@ -1,6 +1,5 @@
 import { Box, Divider, IconButton, MenuList, SvgIcon } from "@mui/material";
 import { SidebarMenuItem } from "./SidebarMenuItem";
-import ThemeIcon from "src/icons/ThemeIcon.svg";
 import DashboardIcon from "src/icons/DashboardIcon.svg";
 import SwapIcon from "src/icons/SwapIcon.svg";
 import PortfolioIcon from "src/icons/PortfolioIcon.svg";

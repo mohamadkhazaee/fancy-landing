@@ -1,9 +1,16 @@
-import { Box, Button, Typography } from "@mui/material";
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  Box,
+  Button,
+  Typography,
+} from "@mui/material";
 import { PropsWithChildren, useState } from "react";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import { Header } from "./Header";
 import { Sidebar } from "./sidebar/Sidebar";
-
+import { useIsMobile } from "src/shared/hooks";
+import { AppbarBottom } from "./AppbarBottom";
 interface DashboardLayoutProps {
   title: string;
   caption?: string;
@@ -14,6 +21,8 @@ export function DashboardLayout({
   children,
 }: PropsWithChildren<DashboardLayoutProps>) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [appbarBottom, setAppbarBottom] = useState("dashboard");
+  const isMobile = useIsMobile();
   return (
     <Box
       sx={{
@@ -52,6 +61,7 @@ export function DashboardLayout({
           </Box>
         </Box>
       </Box>
+      {isMobile && <AppbarBottom value={title} />}
     </Box>
   );
 }
