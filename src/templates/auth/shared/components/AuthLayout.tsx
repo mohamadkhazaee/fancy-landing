@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PropsWithChildren } from "react";
 import { AuthGradiant } from "./AuthGradiant";
 import { BgToken } from "./BgToken";
-
+import BGImage from "../../../../../public/BGred.svg";
 type ForgetPasswordProps = PropsWithChildren<{ gradiantSrc: string }>;
 export function AuthLayout({ children, gradiantSrc }: ForgetPasswordProps) {
   return (
@@ -15,10 +15,12 @@ export function AuthLayout({ children, gradiantSrc }: ForgetPasswordProps) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "neutral.n2",
         position: "relative",
         overflow: "hidden",
         flexDirection: "column",
+        backgroundImage: `url(${BGImage})`,
+        // background:
+        //   "linear-gradient(329deg, rgb(28, 26, 27) 38%, rgb(37, 27, 29) 98%)",
       }}
     >
       <Box

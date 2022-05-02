@@ -15,7 +15,13 @@ export function AuthGradiant({ src }: AuthGradiant) {
         height: 1,
       }}
     >
-      <img src={src} width="100%" alt="token" />
+      <Image
+        alt="Mountains"
+        src={src}
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+      />
     </Box>
   );
 }
