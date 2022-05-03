@@ -5,10 +5,15 @@ import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
 import { useState } from "react";
+import Cookies from "js-cookie";
+import { COOKIE_NAME } from "src/shared/utils";
+import { useRouter } from "next/router";
+import path from "path";
 interface HeaderProps {
   toggleMenu: () => void;
 }
 export function Header({ toggleMenu }: HeaderProps) {
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   return (
     <Box
@@ -88,7 +93,14 @@ export function Header({ toggleMenu }: HeaderProps) {
         }}
       >
         <MenuItem>Profile</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem
+          onClick={() => {
+            Cookies.remove(COOKIE_NAME, { path: "/", domain: router.basePath });
+            router.push("/login");
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </Box>
   );
