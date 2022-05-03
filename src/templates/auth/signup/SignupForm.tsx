@@ -14,7 +14,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signupApiCall } from "src/api";
 import { COOKIE_NAME } from "src/shared/utils";
+import { useSnackbar } from "notistack";
 export function SignupForm() {
+  const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const {
     register,

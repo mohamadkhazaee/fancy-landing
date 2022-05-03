@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { loginApiCall, signupApiCall } from "src/api";
+import { loginApiCall } from "src/api";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useSnackbar } from "notistack";
 export function LoginForm() {
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
