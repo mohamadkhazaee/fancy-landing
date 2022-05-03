@@ -5,7 +5,7 @@ import { PoolTableRow } from "src/templates/pools";
 export function Dashboard() {
   return (
     <DashboardLayout title="Dashboard">
-      <Grid container spacing={3}>
+      <Grid container rowSpacing={3}>
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Portfolio Balance"

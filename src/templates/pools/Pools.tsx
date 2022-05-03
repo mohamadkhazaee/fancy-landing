@@ -5,7 +5,7 @@ import { PoolTableRow } from "src/templates/pools";
 export function Pools() {
   return (
     <DashboardLayout title="Pools">
-      <Grid width={1} container spacing={3}>
+      <Grid width={1} container>
         <Grid item xs={12}>
           <Box
             sx={{

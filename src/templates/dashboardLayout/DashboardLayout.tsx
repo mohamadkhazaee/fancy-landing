@@ -35,7 +35,7 @@ export function DashboardLayout({
         <Sidebar menu={isMenuOpen} />
         <Box
           sx={{
-            my: 4,
+            my: { xs: 10, md: 4 },
             width: { xs: 1, md: `calc( 100% - ${SIDEBAR_SIZE}px )` },
             ml: { md: `${SIDEBAR_SIZE}px` },
             px: 2,
