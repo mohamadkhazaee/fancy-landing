@@ -31,7 +31,7 @@ export function LoginForm() {
         })
         .catch((err) => {
           setLoading(false);
-          err.response.data.result.errors.forEach((element) => {
+          err.response.data.result.errors.forEach((element: string) => {
             //TODO: in case of no record we will recieve an array
             // | in case of one of them wrong we will recieve message: "Wrong Email / Password combination"
             enqueueSnackbar(element, {
