@@ -38,6 +38,11 @@ export function SignupForm() {
       })
       .catch((err) => {
         setLoading(false);
+        err.response.data.result.errors.forEach((element: string) => {
+          enqueueSnackbar(element, {
+            variant: "error",
+          });
+        });
       });
   };
   return (

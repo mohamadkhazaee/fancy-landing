@@ -17,6 +17,7 @@
     "@mui/styled-engine-sc": "^5.4.2",
     "@svgr/webpack": "^6.2.1",
     "@types/js-cookie": "^3.0.2",
+    "@usedapp/core": "^1.0.1",
     "axios": "^0.27.2",
     "js-cookie": "^3.0.1",
     "next": "12.1.0",

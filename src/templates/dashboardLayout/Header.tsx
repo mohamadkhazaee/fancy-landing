@@ -4,17 +4,21 @@ import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useRouter } from "next/router";
-import path from "path";
+import { useEthers, useEtherBalance } from "@usedapp/core";
 interface HeaderProps {
   toggleMenu: () => void;
 }
 export function Header({ toggleMenu }: HeaderProps) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { activateBrowserWallet, account, deactivate } = useEthers();
+  useEffect(() => {
+    console.log(account);
+  }, [account]);
   return (
     <Box
       sx={{
@@ -78,7 +82,9 @@ export function Header({ toggleMenu }: HeaderProps) {
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
-        <Button variant="outlined">CONNECT</Button>
+        <Button onClick={() => activateBrowserWallet()} variant="outlined">
+          CONNECT
+        </Button>
       </Box>
       <Menu
         anchorEl={anchorEl}
