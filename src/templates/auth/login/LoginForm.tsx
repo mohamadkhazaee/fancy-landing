@@ -1,4 +1,3 @@
-import { ErrorSharp } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Cookies from "js-cookie";
@@ -7,8 +6,10 @@ import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginApiCall, signupApiCall } from "src/api";
-import { COOKIE_NAME, notify } from "src/shared/utils";
+import { COOKIE_NAME } from "src/shared/utils";
+import { useSnackbar } from "notistack";
 export function LoginForm() {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -21,7 +22,9 @@ export function LoginForm() {
       setLoading(true);
       loginApiCall(data)
         .then((res) => {
-          notify({ message: "Logged in successfully", variant: "success" });
+          enqueueSnackbar("Logged in successfully", {
+            variant: "success",
+          });
           setLoading(false);
           Cookies.set(COOKIE_NAME, res.data.result.token);
           router.push("/dashboard");

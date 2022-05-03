@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signupApiCall } from "src/api";
-import { COOKIE_NAME, notify } from "src/shared/utils";
+import { COOKIE_NAME } from "src/shared/utils";
 export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const {
@@ -27,7 +27,9 @@ export function SignupForm() {
     setLoading(true);
     signupApiCall(data)
       .then((res) => {
-        notify({ message: "Logged in successfully", variant: "success" });
+        enqueueSnackbar("Logged in successfully", {
+          variant: "success",
+        });
         setLoading(false);
         Cookies.set(COOKIE_NAME, res.data.result.token);
         router.push("/dashboard");

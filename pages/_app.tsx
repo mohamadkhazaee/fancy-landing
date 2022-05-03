@@ -4,18 +4,28 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../src/styles/theme";
 import "src/styles/stylesheet.css";
 import { UserContextProvider } from "../src/contexts";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { SnackbarProvider } from "notistack";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserContextProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-      <ToastContainer />
-    </UserContextProvider>
+    <>
+      <UserContextProvider>
+        <SnackbarProvider
+          maxSnack={3}
+          autoHideDuration={5000}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          hideIconVariant={false}
+        >
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </SnackbarProvider>
+      </UserContextProvider>
+    </>
   );
 }
 
