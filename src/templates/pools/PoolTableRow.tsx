@@ -26,7 +26,7 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
         <>
           <Grid item xs={5}>
             <Box>
-              <Typography variant="h5" fontWeight="bold">
+              <Typography variant="h6" fontWeight="bold">
                 VENUS DAI
               </Typography>
               <Typography variant="caption">Earn DAI Interest</Typography>
@@ -35,7 +35,7 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           <Grid item xs={3}>
             <Box>
               <Typography variant="caption">$ 68,000</Typography>
-              <Typography variant="h5" fontWeight="bold">
+              <Typography variant="h6" fontWeight="bold">
                 Liquidity
               </Typography>
             </Box>
@@ -43,7 +43,7 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           <Grid item xs={3}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Typography variant="caption">APY</Typography>
-              <Typography variant="h5" fontWeight="bold">
+              <Typography variant="h6" fontWeight="bold">
                 23%
               </Typography>
             </Box>
@@ -53,9 +53,39 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
               <SvgIcon htmlColor="#fff" inheritViewBox component={ArrowDown} />
             </IconButton>
           </Grid>
-          <Collapse in={collapse}>
+          <Collapse sx={{ width: 1, mt: 2 }} in={collapse}>
             <Grid item xs={12}>
-              <Box sx={{ width: 1, minHeight: 80 }}>felan</Box>
+              <Box
+                sx={{
+                  width: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box display="flex" flexDirection="column">
+                  <Typography variant="caption">Space Available</Typography>
+                  <Typography variant="h6" fontWeight="bold">
+                    76000 DAI
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", height: 1 }}>
+                  <Box
+                    sx={{
+                      bgcolor:
+                        status === "live" ? "error.main" : "text.primary",
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      mr: 1,
+                      mt: "4px",
+                    }}
+                  />
+                  <Typography variant="body1">
+                    {status === "live" ? "Live" : "Soon"}
+                  </Typography>
+                </Box>
+              </Box>
             </Grid>
           </Collapse>
         </>
