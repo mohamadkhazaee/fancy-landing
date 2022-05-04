@@ -86,6 +86,9 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
                   </Typography>
                 </Box>
               </Box>
+              <Button fullWidth variant="contained">
+                ENABLE
+              </Button>
             </Grid>
           </Collapse>
         </>
