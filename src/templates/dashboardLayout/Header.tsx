@@ -16,9 +16,6 @@ export function Header({ toggleMenu }: HeaderProps) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { activateBrowserWallet, account, deactivate } = useEthers();
-  useEffect(() => {
-    console.log(account);
-  }, [account]);
   return (
     <Box
       sx={{

@@ -27,7 +27,7 @@ export function BgToken({
         ...(left && { left }),
         ...(right && { right }),
         ...(bottom && { bottom }),
-        //  animation: `${rotation} 60s infinite linear`,
+        animation: `${rotation} 60s infinite linear`,
       }}
     >
       <Image src={src} width={imageWidth} height={imageHeight} alt="token" />

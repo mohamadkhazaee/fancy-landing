@@ -81,6 +81,18 @@ export function AppbarBottom({ value }: setAppbarBottomProps) {
             />
           }
         />
+        <BottomNavigationAction
+          label="Profile"
+          value="Profile"
+          href="/dashboard/profile"
+          icon={
+            <SvgIcon
+              viewBox="0 0 36 30"
+              fontSize="small"
+              component={DashboardIcon}
+            />
+          }
+        />
       </BottomNavigation>
     </Box>
   );

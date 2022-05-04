@@ -1,5 +1,5 @@
 import { Pools } from "../../src/templates/pools";
-import { withAuthGuard } from "../../src/shared/withAuthGuard";
+import { withAuthGuard } from "../../src/shared/components";
 
 const PoolsPage = () => {
   return <Pools />;

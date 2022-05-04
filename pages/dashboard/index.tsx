@@ -1,5 +1,5 @@
 import { Dashboard } from "../../src/templates/dashboard";
-import { withAuthGuard } from "../../src/shared/withAuthGuard";
+import { withAuthGuard } from "../../src/shared/components";
 const DashboardPage = () => {
   return <Dashboard />;
 };
