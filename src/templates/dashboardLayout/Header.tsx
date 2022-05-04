@@ -8,14 +8,30 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useRouter } from "next/router";
-import { useEthers, useEtherBalance } from "@usedapp/core";
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
 interface HeaderProps {
   toggleMenu: () => void;
 }
 export function Header({ toggleMenu }: HeaderProps) {
   const router = useRouter();
+  const [address, setAddress] = useState<string>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { activateBrowserWallet, account, deactivate } = useEthers();
+  useEffect(() => {}, []);
+
+  const handleConnect = async () => {
+    if (typeof window.ethereum !== "undefined") {
+      await window.ethereum.enable();
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      setAddress(accounts[0]);
+    }
+  };
   return (
     <Box
       sx={{
@@ -79,8 +95,13 @@ export function Header({ toggleMenu }: HeaderProps) {
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
-        <Button onClick={() => activateBrowserWallet()} variant="outlined">
-          CONNECT
+        <Button onClick={() => handleConnect()} variant="outlined">
+          {address
+            ? `${address.substring(0, 5)}...${address.substring(
+                address.length - 5,
+                address.length
+              )}`
+            : "CONNECT"}
         </Button>
       </Box>
       <Menu

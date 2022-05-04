@@ -5,19 +5,6 @@ import { theme } from "../src/styles/theme";
 import "src/styles/stylesheet.css";
 import { UserContextProvider } from "../src/contexts";
 import { SnackbarProvider } from "notistack";
-import {
-  useEthers,
-  useEtherBalance,
-  DAppProvider,
-  Mainnet,
-} from "@usedapp/core";
-const config = {
-  readOnlyChainId: Mainnet.chainId,
-  readOnlyUrls: {
-    [Mainnet.chainId]:
-      "https://mainnet.infura.io/v3/62687d1a985d4508b2b7a24827551934",
-  },
-};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -34,9 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         >
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <DAppProvider config={config}>
-              <Component {...pageProps} />
-            </DAppProvider>
+            <Component {...pageProps} />
           </ThemeProvider>
         </SnackbarProvider>
       </UserContextProvider>
