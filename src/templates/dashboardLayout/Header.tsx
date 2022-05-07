@@ -56,10 +56,11 @@ export function Header({ toggleMenu }: HeaderProps) {
         .catch(() => {
           setLoading(false);
         });
+    } else {
+      enqueueSnackbar("No Metamask Wallet Detected!", {
+        variant: "error",
+      });
     }
-    enqueueSnackbar("No Metamask Wallet Detected!", {
-      variant: "error",
-    });
   };
   return (
     <Box
