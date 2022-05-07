@@ -12,8 +12,12 @@ import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
 import { useState } from "react";
 import CancelIcon from "src/icons/CancelIcon.svg";
+import CalculatorIcon from "src/icons/CalculatorIcon.svg";
+import { Modal, Calculator } from "src/shared/components";
 export function PortfolioTableRow() {
   const [collapse, setCollapse] = useState(false);
+  const [calcModal, setCalcModal] = useState(false);
+
   const isMobile = useIsMobile();
   return (
     <Grid
@@ -46,9 +50,21 @@ export function PortfolioTableRow() {
           <Grid item xs={3}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Typography variant="caption">APY</Typography>
-              <Typography variant="h6" fontWeight="bold">
-                23%
-              </Typography>
+              <Box display="flex" alignItems="flex-start">
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  mr={{ xs: 0.25, md: 0.5 }}
+                >
+                  23%
+                </Typography>
+                <IconButton
+                  onClick={() => setCalcModal((prev) => !prev)}
+                  sx={{ transform: "scale(0.7)" }}
+                >
+                  <SvgIcon viewBox="0 0 24 24" component={CalculatorIcon} />
+                </IconButton>
+              </Box>
             </Box>
           </Grid>
           <Grid item xs={1} display="flex" justifyContent="center">
@@ -119,9 +135,14 @@ export function PortfolioTableRow() {
           <Grid item xs={2}>
             <Box>
               <Typography variant="caption">APY</Typography>
-              <Typography variant="h5" fontWeight="bold">
-                9.27%
-              </Typography>
+              <Box display="flex" alignItems="flex-start">
+                <Typography variant="h5" fontWeight="bold" mr={0.5}>
+                  23%
+                </Typography>
+                <IconButton onClick={() => setCalcModal((prev) => !prev)}>
+                  <SvgIcon viewBox="0 0 24 24" component={CalculatorIcon} />
+                </IconButton>
+              </Box>
             </Box>
           </Grid>
           <Grid item xs={2}>
@@ -165,6 +186,9 @@ export function PortfolioTableRow() {
           </Grid>
         </>
       )}
+      <Modal open={calcModal} onClose={() => setCalcModal((prev) => !prev)}>
+        <Calculator />
+      </Modal>
     </Grid>
   );
 }

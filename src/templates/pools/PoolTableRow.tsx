@@ -46,9 +46,21 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           <Grid item xs={3}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Typography variant="caption">APY</Typography>
-              <Typography variant="h6" fontWeight="bold">
-                23%
-              </Typography>
+              <Box display="flex" alignItems="flex-start">
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  mr={{ xs: 0.25, md: 0.5 }}
+                >
+                  23%
+                </Typography>
+                <IconButton
+                  onClick={() => setCalcModal((prev) => !prev)}
+                  sx={{ transform: "scale(0.7)" }}
+                >
+                  <SvgIcon viewBox="0 0 24 24" component={CalculatorIcon} />
+                </IconButton>
+              </Box>
             </Box>
           </Grid>
           <Grid item xs={1} display="flex" justifyContent="center">
