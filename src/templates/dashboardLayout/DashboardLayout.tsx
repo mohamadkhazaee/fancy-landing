@@ -1,4 +1,5 @@
 import {
+  Backdrop,
   BottomNavigation,
   BottomNavigationAction,
   Box,
@@ -21,7 +22,6 @@ export function DashboardLayout({
   children,
 }: PropsWithChildren<DashboardLayoutProps>) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [appbarBottom, setAppbarBottom] = useState("dashboard");
   const isMobile = useIsMobile();
   return (
     <Box
@@ -30,7 +30,10 @@ export function DashboardLayout({
         minHeight: "100vh",
       }}
     >
-      <Header toggleMenu={() => setIsMenuOpen((prev) => !prev)} />
+      <Header
+        open={isMenuOpen}
+        toggleMenu={() => setIsMenuOpen((prev) => !prev)}
+      />
       <Box display="flex" sx={{ pt: "60px" }}>
         <Sidebar menu={isMenuOpen} />
         <Box
@@ -62,6 +65,11 @@ export function DashboardLayout({
         </Box>
       </Box>
       {isMobile && <AppbarBottom value={title} />}
+      <Backdrop
+        sx={{ color: "#fff", zIndex: 9 }}
+        open={isMenuOpen}
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+      ></Backdrop>
     </Box>
   );
 }

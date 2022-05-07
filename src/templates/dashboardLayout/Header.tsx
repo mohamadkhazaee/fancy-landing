@@ -4,6 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
+import CloseIcon from "src/icons/CloseIcon.svg";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
@@ -19,8 +20,9 @@ declare global {
 }
 interface HeaderProps {
   toggleMenu: () => void;
+  open: boolean;
 }
-export function Header({ toggleMenu }: HeaderProps) {
+export function Header({ toggleMenu, open }: HeaderProps) {
   const router = useRouter();
   const [address, setAddress] = useState<string>();
   const [signiture, setSigniture] = useState<string>();
@@ -96,11 +98,21 @@ export function Header({ toggleMenu }: HeaderProps) {
       >
         <Image src="/Logo.svg" width={100} height={40} alt="CRYPTAL Logo" />
         <IconButton onClick={toggleMenu}>
-          <SvgIcon
-            sx={{ display: { md: "none" } }}
-            htmlColor="#fff"
-            component={MenuIcon}
-          />
+          {open ? (
+            <SvgIcon
+              sx={{ display: { md: "none" } }}
+              htmlColor="#fff"
+              viewBox="0 0 50 50"
+              component={CloseIcon}
+            />
+          ) : (
+            <SvgIcon
+              sx={{ display: { md: "none" } }}
+              htmlColor="#fff"
+              viewBox="0 0 30 30"
+              component={MenuIcon}
+            />
+          )}
         </IconButton>
       </Box>
       <Box
@@ -125,16 +137,18 @@ export function Header({ toggleMenu }: HeaderProps) {
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
-        <Button onClick={() => handleConnect()} variant="outlined">
-          {loading
-            ? "CONNECTING..."
-            : address
+        <LoadingButton
+          loading={loading}
+          onClick={() => handleConnect()}
+          variant="contained"
+        >
+          {address
             ? `${address.substring(0, 5)}...${address.substring(
                 address.length - 5,
                 address.length
               )}`
             : "CONNECT"}
-        </Button>
+        </LoadingButton>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -143,7 +157,6 @@ export function Header({ toggleMenu }: HeaderProps) {
         sx={{
           mt: 1,
           "& .MuiPaper-root": {
-            backgroundColor: "neutral.n4",
             minWidth: "100px",
           },
         }}
