@@ -32,8 +32,8 @@ export function Banner() {
             >
               Invite friends and earn Money
             </Typography>
-            <Typography variant={isMobile ? "caption" : "h5"} mb={1}>
-              For every friend who tops up money, we’ll reward you %3 with USDT.{" "}
+            <Typography variant={isMobile ? "caption" : "h5"} mb={2}>
+              For every friend who tops up money, we’ll reward you %3 with USDT.
             </Typography>
             <Button
               disableRipple

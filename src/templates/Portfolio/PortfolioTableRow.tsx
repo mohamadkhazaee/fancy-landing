@@ -11,7 +11,7 @@ import {
 import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
 import { useState } from "react";
-
+import CancelIcon from "src/icons/CancelIcon.svg";
 export function PortfolioTableRow() {
   const [collapse, setCollapse] = useState(false);
   const isMobile = useIsMobile();
@@ -130,9 +130,37 @@ export function PortfolioTableRow() {
               15,000,354
             </Typography>
           </Grid>
-          <Grid item xs={3} alignItems="center" display="flex">
+          <Grid item xs={1}>
+            <Box sx={{ display: "flex", alignItems: "center", height: 1 }}>
+              <Box
+                sx={{
+                  bgcolor: status === "live" ? "error.main" : "text.primary",
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  mr: 1,
+                  mt: "4px",
+                }}
+              />
+              <Typography variant="body1">
+                {status === "live" ? "Live" : "Soon"}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={2} alignItems="center" display="flex">
             <Box display="flex">
-              <Button variant="text">cancel</Button>
+              <Button
+                startIcon={
+                  <SvgIcon
+                    htmlColor="#fff"
+                    inheritViewBox
+                    component={CancelIcon}
+                  />
+                }
+                variant="text"
+              >
+                cancel
+              </Button>
             </Box>
           </Grid>
         </>

@@ -16,18 +16,19 @@ export function Dashboard() {
         </Grid>
         <Grid item xs={12} md={4}>
           <InfoWidget
+            title="Copper rater"
+            value="$9.835"
+            action={<Button variant="outlined">withdraw</Button>}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <InfoWidget
             title="Loyalty Level"
             value="Base"
             action={<Button variant="outlined">Upgrade</Button>}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
-          <InfoWidget
-            title="Portfolio Balance"
-            value="$5,100.85"
-            action={<Button variant="outlined">withdraw</Button>}
-          />
-        </Grid>
+
         <Grid item xs={12} container>
           <Banner />
         </Grid>

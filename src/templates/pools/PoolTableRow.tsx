@@ -9,7 +9,9 @@ import {
 } from "@mui/material";
 import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
+import CalculatorIcon from "src/icons/CalculatorIcon.svg";
 import { useState } from "react";
+import { Modal, Calculator } from "src/shared/components";
 
 interface PoolTableRowProps {
   status: "live" | "soon";
@@ -17,6 +19,7 @@ interface PoolTableRowProps {
 export function PoolTableRow({ status }: PoolTableRowProps) {
   const isMobile = useIsMobile();
   const [collapse, setCollapse] = useState(false);
+  const [calcModal, setCalcModal] = useState(false);
   return (
     <Grid
       container
@@ -105,9 +108,14 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           <Grid item xs={2}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Typography variant="caption">APY</Typography>
-              <Typography variant="h5" fontWeight="bold">
-                23%
-              </Typography>
+              <Box display="flex" alignItems="flex-start">
+                <Typography variant="h5" fontWeight="bold" mr={0.5}>
+                  23%
+                </Typography>
+                <IconButton onClick={() => setCalcModal((prev) => !prev)}>
+                  <SvgIcon viewBox="0 0 24 24" component={CalculatorIcon} />
+                </IconButton>
+              </Box>
             </Box>
           </Grid>
           <Grid item xs={3}>
@@ -155,6 +163,9 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           </Grid>
         </>
       )}
+      <Modal open={calcModal} onClose={() => setCalcModal((prev) => !prev)}>
+        <Calculator />
+      </Modal>
     </Grid>
   );
 }

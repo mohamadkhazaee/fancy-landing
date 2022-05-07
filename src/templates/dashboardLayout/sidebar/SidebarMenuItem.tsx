@@ -6,6 +6,7 @@ import {
   Typography,
   ListItemText,
   SvgIcon,
+  Chip,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { ElementType, ReactNode } from "react";
@@ -30,9 +31,17 @@ export function SidebarMenuItem({
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText sx={{ color: "text.secondary" }}>{title}</ListItemText>
       {soon && (
-        <Typography variant="body2" color="text.primary">
-          ( SOON )
-        </Typography>
+        <Chip
+          sx={{
+            color: "#8A8A8A",
+            border: "none",
+            "&.MuiChip-root": {
+              bgcolor: "#2F2F2F",
+            },
+          }}
+          variant="outlined"
+          label="SOON"
+        />
       )}
     </MenuItem>
   );

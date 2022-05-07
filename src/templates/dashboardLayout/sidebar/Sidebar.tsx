@@ -8,6 +8,7 @@ import GameIcon from "src/icons/GameIcon.svg";
 import TwitterIcon from "src/icons/TwitterIcon.svg";
 import MediumIcon from "src/icons/MediumIcon.svg";
 import TelegramIcon from "src/icons/TelegramIcon.svg";
+import YoutubeIcon from "src/icons/YoutubeIcon.svg";
 import PoolsIcon from "src/icons/PoolsIcon.svg";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 
@@ -34,7 +35,7 @@ export function Sidebar({ menu }: SidebarProps) {
         transition: "all ease-in .3s",
         pt: 3,
         pb: 2,
-        zIndex: 10000,
+        zIndex: 10,
       }}
     >
       <MenuList sx={{ color: "text.primary" }}>
@@ -125,25 +126,36 @@ export function Sidebar({ menu }: SidebarProps) {
             justifyContent: "space-between",
           }}
         >
-          <IconButton>
+          <IconButton disableRipple>
             <SvgIcon
-              viewBox="0 0 50 30"
+              htmlColor="#fff"
+              viewBox="0 0 35 35"
               fontSize="large"
               component={TwitterIcon}
             />
           </IconButton>
-          <IconButton>
+          <IconButton disableRipple>
             <SvgIcon
-              viewBox="0 0 50 30"
+              htmlColor="#fff"
+              viewBox="0 0 35 35"
               fontSize="medium"
               component={MediumIcon}
             />
           </IconButton>
-          <IconButton>
+          <IconButton disableRipple>
             <SvgIcon
-              viewBox="0 0 50 30"
+              htmlColor="#fff"
+              viewBox="0 0 35 35"
               fontSize="large"
               component={TelegramIcon}
+            />
+          </IconButton>
+          <IconButton disableRipple>
+            <SvgIcon
+              htmlColor="#fff"
+              viewBox="0 0 35 35"
+              fontSize="large"
+              component={YoutubeIcon}
             />
           </IconButton>
         </Box>
