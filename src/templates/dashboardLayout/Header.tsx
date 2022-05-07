@@ -158,6 +158,7 @@ export function Header({ toggleMenu, open }: HeaderProps) {
           mt: 1,
           "& .MuiPaper-root": {
             minWidth: "100px",
+            backgroundColor: "neutral.n4",
           },
         }}
       >
