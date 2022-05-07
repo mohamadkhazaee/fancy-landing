@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useRouter } from "next/router";
+import { connectMetaMask } from "src/api";
+import { useSnackbar } from "notistack";
+import { LoadingButton } from "@mui/lab";
 
 declare global {
   interface Window {
@@ -20,17 +23,43 @@ interface HeaderProps {
 export function Header({ toggleMenu }: HeaderProps) {
   const router = useRouter();
   const [address, setAddress] = useState<string>();
+  const [signiture, setSigniture] = useState<string>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  useEffect(() => {}, []);
+  const [loading, setLoading] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    console.log(signiture);
+  }, [signiture]);
 
   const handleConnect = async () => {
     if (typeof window.ethereum !== "undefined") {
+      setLoading(true);
       await window.ethereum.enable();
+      const message = "Hello from Ethereum Stack Exchange!";
       const accounts = await window.ethereum.request({
         method: "eth_accounts",
       });
-      setAddress(accounts[0]);
+      const signature = await window.ethereum.request({
+        method: "personal_sign",
+        params: [message, accounts[0]],
+      });
+      connectMetaMask({ message, signature, account: accounts[0] })
+        .then(() => {
+          setSigniture(signature);
+          setAddress(accounts[0]);
+          enqueueSnackbar("Connected to Metamask successfully", {
+            variant: "success",
+          });
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     }
+    enqueueSnackbar("No Metamask Wallet Detected!", {
+      variant: "error",
+    });
   };
   return (
     <Box
@@ -95,14 +124,18 @@ export function Header({ toggleMenu }: HeaderProps) {
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
-        <Button onClick={() => handleConnect()} variant="outlined">
+        <LoadingButton
+          loading={loading}
+          onClick={() => handleConnect()}
+          variant="outlined"
+        >
           {address
             ? `${address.substring(0, 5)}...${address.substring(
                 address.length - 5,
                 address.length
               )}`
             : "CONNECT"}
-        </Button>
+        </LoadingButton>
       </Box>
       <Menu
         anchorEl={anchorEl}

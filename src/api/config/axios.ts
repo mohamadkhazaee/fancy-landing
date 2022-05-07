@@ -10,7 +10,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const { token } = getToken();
   if (token && config.headers) {
-    config.headers.dashagh = `Bearer ${token}`;
+    config.headers.dashagh = token;
   }
   return config;
 });
