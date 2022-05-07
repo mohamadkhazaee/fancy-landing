@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <UserContextProvider>
         <SnackbarProvider
           maxSnack={3}
-          autoHideDuration={5000}
+          autoHideDuration={2000}
           anchorOrigin={{
             vertical: "top",
             horizontal: "right",
