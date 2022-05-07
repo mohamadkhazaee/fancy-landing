@@ -13,7 +13,7 @@ export function Stepper({ index, title, desc }: StepperProps) {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        mb: 2,
+        mb: 4,
       }}
     >
       <Box

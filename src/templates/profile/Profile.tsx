@@ -60,11 +60,26 @@ export function Profile() {
           <Grid item xs={12}>
             <DefaultBox
               sx={{
-                px: { xs: 2 },
+                px: { xs: 2, md: 4 },
                 py: 3,
               }}
             >
-              <ProfileSectionTitle title="Referrals" sx={{ mb: 4 }} />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  mb: 4,
+                }}
+              >
+                <ProfileSectionTitle title="Referrals" />
+                <Image
+                  src="/ReferralSteps.png"
+                  width={50}
+                  height={50}
+                  alt="image"
+                />
+              </Box>
               {stepperData.map((i, index) => (
                 <Stepper
                   key={i.title}

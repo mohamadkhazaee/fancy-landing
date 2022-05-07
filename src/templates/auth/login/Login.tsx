@@ -24,6 +24,7 @@ export function Login() {
         src="/RedToken.png"
         imageWidth={30}
         imageHeight={30}
+        disableOnMobile
       />
       <FormWrapper>
         <Typography sx={{ fontWeight: "bold" }} variant="h4" mb={3}>

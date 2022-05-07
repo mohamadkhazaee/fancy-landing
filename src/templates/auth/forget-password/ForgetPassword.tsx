@@ -20,6 +20,7 @@ export function ForgetPassword() {
         src="/BlueToken.png"
         imageWidth={30}
         imageHeight={30}
+        disableOnMobile
       />
       <FormWrapper>
         <Typography sx={{ fontWeight: "bold" }} variant="h4" mb={3}>

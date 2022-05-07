@@ -28,6 +28,7 @@ export function Signup() {
         src="/YellowToken.png"
         imageWidth={60}
         imageHeight={60}
+        disableOnMobile
       />
       <FormWrapper>
         <Typography sx={{ fontWeight: "bold" }} variant="h4" mb={3}>
