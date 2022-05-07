@@ -34,8 +34,8 @@ export function NotificationEdit() {
       </Box>
       <Image
         src="/ProfileNotification.png"
-        width={113 * 0.7}
-        height={129 * 0.7}
+        width={154 * 0.7}
+        height={154 * 0.7}
         alt="img"
       />
     </DefaultBox>

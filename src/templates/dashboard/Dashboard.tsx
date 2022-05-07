@@ -2,6 +2,7 @@ import { Button, Grid, Box, Chip } from "@mui/material";
 import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "./InfoWidget";
 import { PoolTableRow } from "src/templates/pools";
+import { Banner } from "./Banner";
 export function Dashboard() {
   return (
     <DashboardLayout title="Dashboard">
@@ -26,6 +27,9 @@ export function Dashboard() {
             value="$5,100.85"
             action={<Button variant="outlined">withdraw</Button>}
           />
+        </Grid>
+        <Grid item xs={12} container>
+          <Banner />
         </Grid>
         <Grid item xs={12}>
           <InfoWidget title="Pools">

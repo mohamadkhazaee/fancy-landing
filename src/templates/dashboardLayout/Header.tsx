@@ -125,18 +125,16 @@ export function Header({ toggleMenu }: HeaderProps) {
         >
           <PersonIcon htmlColor="#fff" />
         </IconButton>
-        <LoadingButton
-          loading={loading}
-          onClick={() => handleConnect()}
-          variant="outlined"
-        >
-          {address
+        <Button onClick={() => handleConnect()} variant="outlined">
+          {loading
+            ? "CONNECTING..."
+            : address
             ? `${address.substring(0, 5)}...${address.substring(
                 address.length - 5,
                 address.length
               )}`
             : "CONNECT"}
-        </LoadingButton>
+        </Button>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -150,7 +148,9 @@ export function Header({ toggleMenu }: HeaderProps) {
           },
         }}
       >
-        <MenuItem>Profile</MenuItem>
+        <MenuItem onClick={() => router.push("/dashboard/profile")}>
+          Profile
+        </MenuItem>
         <MenuItem
           onClick={() => {
             Cookies.remove(COOKIE_NAME, { path: "/", domain: router.basePath });
