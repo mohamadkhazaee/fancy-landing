@@ -37,6 +37,9 @@ export function Header({ toggleMenu, open }: HeaderProps) {
     []
   );
   const handleConnect = async () => {
+    if (metamaskAddress) {
+      return;
+    }
     if (typeof window.ethereum !== "undefined") {
       setLoading(true);
       await window.ethereum.enable();
