@@ -1,11 +1,11 @@
-import { Button, IconButton, Menu, MenuItem, SvgIcon } from "@mui/material";
+import { IconButton, Menu, MenuItem, SvgIcon } from "@mui/material";
 import { Box } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
 import CloseIcon from "src/icons/CloseIcon.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useRouter } from "next/router";
@@ -13,6 +13,10 @@ import { connectMetaMask } from "src/api";
 import { useSnackbar } from "notistack";
 import { LoadingButton } from "@mui/lab";
 
+export const METAMASK_INFO_KEYS = {
+  ADDRESS: "METAMASK_ACCOUNT_ADDRESS",
+  SIGNITURE: "METAMASK_ACCOUNT_SIGNITURE",
+};
 declare global {
   interface Window {
     ethereum: any;
@@ -24,16 +28,14 @@ interface HeaderProps {
 }
 export function Header({ toggleMenu, open }: HeaderProps) {
   const router = useRouter();
-  const [address, setAddress] = useState<string>();
-  const [signiture, setSigniture] = useState<string>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [loading, setLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  useEffect(() => {
-    console.log(signiture);
-  }, [signiture]);
-
+  const metamaskAddress = useMemo(
+    () => Cookies.get(METAMASK_INFO_KEYS.ADDRESS),
+    []
+  );
   const handleConnect = async () => {
     if (typeof window.ethereum !== "undefined") {
       setLoading(true);
@@ -48,8 +50,8 @@ export function Header({ toggleMenu, open }: HeaderProps) {
       });
       connectMetaMask({ message, signature, account: accounts[0] })
         .then(() => {
-          setSigniture(signature);
-          setAddress(accounts[0]);
+          Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, accounts[0]);
+          Cookies.set(METAMASK_INFO_KEYS.ADDRESS, signature);
           enqueueSnackbar("Connected to Metamask successfully", {
             variant: "success",
           });
@@ -142,10 +144,10 @@ export function Header({ toggleMenu, open }: HeaderProps) {
           onClick={() => handleConnect()}
           variant="contained"
         >
-          {address
-            ? `${address.substring(0, 5)}...${address.substring(
-                address.length - 5,
-                address.length
+          {metamaskAddress
+            ? `${metamaskAddress.substring(0, 5)}...${metamaskAddress.substring(
+                metamaskAddress.length - 5,
+                metamaskAddress.length
               )}`
             : "CONNECT"}
         </LoadingButton>
