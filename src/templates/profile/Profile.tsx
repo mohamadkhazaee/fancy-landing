@@ -1,9 +1,8 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { DefaultBox } from "src/shared/components/DefaultBox";
-import { InfoWidget } from "../dashboard/InfoWidget";
 import { DashboardLayout } from "../dashboardLayout";
-import { LoginInformationEdit } from "./LoginInformationEdit";
+import { LoginInformationEdit } from "./login-information";
 import { TwoFaEdit } from "./TwoFaEdit";
 import { NotificationEdit } from "./NotificationEdit";
 import { ProfileSectionTitle } from "./ProfileSectionTitle";
@@ -88,6 +87,11 @@ export function Profile() {
                   desc={i.desc}
                 />
               ))}
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Button variant="outlined" size="large" sx={{ px: 6 }}>
+                  Get Your Link
+                </Button>
+              </Box>
             </DefaultBox>
           </Grid>
         </Grid>

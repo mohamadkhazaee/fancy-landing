@@ -3,7 +3,7 @@ import { Modal as MuiModal } from "@mui/material";
 import { PropsWithChildren } from "react";
 
 const style = {
-  width: 400,
+  minWidth: 400,
   maxWidth: "90%",
   boxShadow: 24,
   borderRadius: 3,
