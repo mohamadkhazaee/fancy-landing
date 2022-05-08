@@ -12,7 +12,7 @@ export function ChangePasswordModal({
   onClose,
 }: ChangePasswordModalProps) {
   return (
-    <Modal open={open} onClose={onClose} containerSx={{ px: 5, width: 580 }}>
+    <Modal open={open} onClose={onClose} containerSx={{ width: 580 }}>
       <Box
         sx={{
           display: "flex",

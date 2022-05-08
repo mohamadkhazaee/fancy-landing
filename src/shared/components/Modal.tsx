@@ -34,7 +34,9 @@ export function Modal({
         },
       }}
     >
-      <Box sx={{ backgroundColor: "neutral.n1", ...style, ...containerSx }}>
+      <Box
+        sx={{ backgroundColor: "neutral.n1", ...style, px: 5, ...containerSx }}
+      >
         {children}
       </Box>
     </MuiModal>

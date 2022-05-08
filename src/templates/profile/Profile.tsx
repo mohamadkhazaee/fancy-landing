@@ -8,7 +8,10 @@ import { NotificationEdit } from "./NotificationEdit";
 import { ProfileSectionTitle } from "./ProfileSectionTitle";
 import { Stepper } from "./Stepper";
 import { stepperData } from "./const";
+import { useState } from "react";
+import { ReferralModal } from "./ReferralModal";
 export function Profile() {
+  const [referralModal, setReferralModal] = useState(false);
   return (
     <DashboardLayout title="Profile" caption="Manage your Profile">
       <Grid container spacing={2}>
@@ -88,7 +91,12 @@ export function Profile() {
                 />
               ))}
               <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Button variant="outlined" size="large" sx={{ px: 6 }}>
+                <Button
+                  onClick={() => setReferralModal((prev) => !prev)}
+                  variant="outlined"
+                  size="large"
+                  sx={{ px: 6 }}
+                >
                   Get Your Link
                 </Button>
               </Box>
@@ -96,6 +104,10 @@ export function Profile() {
           </Grid>
         </Grid>
       </Grid>
+      <ReferralModal
+        open={referralModal}
+        onClose={() => setReferralModal((prev) => !prev)}
+      />
     </DashboardLayout>
   );
 }
