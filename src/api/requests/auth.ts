@@ -9,3 +9,6 @@ export function loginApiCall(data: SigninType) {
 export function connectMetaMask(data: ConnectMetaMaskType) {
   return axios.post("/auth/metamask", data);
 }
+export function getProfile() {
+  return axios.get("/profile/info");
+}

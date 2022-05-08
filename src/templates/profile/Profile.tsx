@@ -8,10 +8,12 @@ import { NotificationEdit } from "./NotificationEdit";
 import { ProfileSectionTitle } from "./ProfileSectionTitle";
 import { Stepper } from "./Stepper";
 import { stepperData } from "./const";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ReferralModal } from "./ReferralModal";
+import { UserContext } from "src/contexts";
 export function Profile() {
   const [referralModal, setReferralModal] = useState(false);
+  const { profile } = useContext(UserContext);
   return (
     <DashboardLayout title="Profile" caption="Manage your Profile">
       <Grid container spacing={2}>
@@ -39,7 +41,7 @@ export function Profile() {
             >
               <ProfileSectionTitle title="Referrals" />
               <Typography variant="h4" mt={1} mb={3}>
-                128
+                {profile?.referals}
               </Typography>
             </DefaultBox>
           </Grid>

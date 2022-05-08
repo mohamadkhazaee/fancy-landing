@@ -10,7 +10,7 @@ import {
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { signupApiCall } from "src/api";
 import { COOKIE_NAME } from "src/shared/utils";
@@ -24,10 +24,13 @@ export function SignupForm() {
     getValues,
     formState: { errors },
   } = useForm();
+
   const router = useRouter();
+  const { ref } = router.query;
+
   const submit = (data: any) => {
     setLoading(true);
-    signupApiCall(data)
+    signupApiCall(ref ? { ...data, referrer: ref } : data)
       .then((res) => {
         enqueueSnackbar("Logged in successfully", {
           variant: "success",
@@ -47,7 +50,7 @@ export function SignupForm() {
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit(submit)}>
-      <Box mb={errors?.email?.message ? 3 : 4}>
+      <Box mb={errors?.email?.message ? 2 : 3}>
         <TextField
           variant="outlined"
           label="Email"
@@ -72,7 +75,7 @@ export function SignupForm() {
           </Typography>
         )}
       </Box>
-      <Box mb={errors?.email?.message ? 3 : 4}>
+      <Box mb={errors?.email?.message ? 2 : 3}>
         <TextField
           type="password"
           variant="outlined"
@@ -100,7 +103,7 @@ export function SignupForm() {
           </Typography>
         )}
       </Box>
-      <Box mb={errors?.email?.message ? 3 : 4}>
+      <Box mb={errors?.email?.message ? 2 : 3}>
         <TextField
           type="password"
           variant="outlined"
@@ -117,8 +120,20 @@ export function SignupForm() {
           <Typography variant="caption" color="error.main" fontWeight="bold">
             {errors.re_password.message}
           </Typography>
-        )}{" "}
+        )}
       </Box>
+
+      {!ref && (
+        <Box mb={1}>
+          <TextField
+            type="text"
+            variant="outlined"
+            label="Invite Code"
+            {...register("referrer")}
+          />
+        </Box>
+      )}
+
       <FormControlLabel
         sx={{ mb: 2 }}
         control={<Checkbox defaultChecked />}

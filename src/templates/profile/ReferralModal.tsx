@@ -3,16 +3,22 @@ import { Modal } from "src/shared/components";
 import CopyIcon from "src/icons/CopyIcon.svg";
 import useClipboard from "react-use-clipboard";
 import { useSnackbar } from "notistack";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "src/contexts";
 
 interface ReferralModalProps {
   open: boolean;
   onClose: () => void;
 }
 export function ReferralModal({ open, onClose }: ReferralModalProps) {
+  const { profile } = useContext(UserContext);
+  useEffect(() => {
+    console.log(profile);
+  }, [profile]);
+
   const { enqueueSnackbar } = useSnackbar();
   const [isCopied, setCopied] = useClipboard(
-    "https://cryptal.global/login?ref=Hsk80SJ2cs"
+    `https://cryptal.global/signup?ref=${profile?._id}`
   );
 
   return (
@@ -44,10 +50,11 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
           }}
         >
           <Typography variant="caption" fontWeight="bold">
-            https://cryptal.global/login?ref=Hsk80SJ2cs
+            https://cryptal.global/signup?ref={[profile?._id]}
           </Typography>
           <Button
             onClick={() => {
@@ -62,6 +69,9 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
             }
             sx={{
               borderRadius: 2,
+              width: { xs: 1, md: "auto" },
+              mt: { xs: 2, md: 0 },
+              px: 1,
               border: "1px solid",
               "&: hover": {
                 border: "1px solid",

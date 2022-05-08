@@ -93,7 +93,6 @@ export function LoginForm() {
           </Typography>
         )}
       </Box>
-
       <LoadingButton
         sx={{ py: 1.5, fontSize: "1.2rem" }}
         fullWidth
