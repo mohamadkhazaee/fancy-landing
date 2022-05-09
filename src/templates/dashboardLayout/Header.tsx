@@ -32,10 +32,11 @@ export function Header({ toggleMenu, open }: HeaderProps) {
   const [loading, setLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
-  const metamaskAddress = useMemo(
-    () => Cookies.get(METAMASK_INFO_KEYS.ADDRESS),
-    []
-  );
+  const metamaskAddress = useMemo(() => {
+    if (!loading) {
+      return Cookies.get(METAMASK_INFO_KEYS.ADDRESS);
+    }
+  }, [loading]);
   const handleConnect = async () => {
     if (metamaskAddress) {
       return;
