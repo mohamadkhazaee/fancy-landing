@@ -5,7 +5,7 @@ import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
 import CloseIcon from "src/icons/CloseIcon.svg";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useRouter } from "next/router";
