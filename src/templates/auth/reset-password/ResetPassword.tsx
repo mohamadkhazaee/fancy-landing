@@ -57,7 +57,7 @@ export function ResetPassword() {
           });
       }
     },
-    [enqueueSnackbar, reset, router]
+    [enqueueSnackbar, reset, router, token]
   );
   return (
     <AuthLayout gradiantSrc="/BGblue.svg">
