@@ -4,6 +4,7 @@ import {
   SigninType,
   SignupType,
   ChangePassword,
+  ResetPassword,
 } from "./types";
 export function signupApiCall(data: SignupType) {
   return axios.post("/signup", data);
@@ -19,4 +20,10 @@ export function getProfile() {
 }
 export function changePassword(data: ChangePassword) {
   return axios.post("/profile/editpassword", data);
+}
+export function forgetPassword(data: { email: string }) {
+  return axios.post("/forgotpassword", data);
+}
+export function resetPassword(data: ResetPassword, token: string) {
+  return axios.post(`/resetpassword/token=${token}`, data);
 }

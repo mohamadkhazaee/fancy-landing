@@ -16,3 +16,7 @@ export type ChangePassword = {
   new_password: string;
   re_new_password: string;
 };
+export type ResetPassword = {
+  password: string;
+  re_password: string;
+};

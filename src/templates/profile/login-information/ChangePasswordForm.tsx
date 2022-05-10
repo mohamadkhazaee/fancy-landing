@@ -43,6 +43,7 @@ export function ChangePasswordForm({ onClose }: ChangePasswordFormProps) {
     <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ mb: 3 }}>
         <TextField
+          type="password"
           label="current password"
           {...register("old_password", {
             required: {
@@ -68,6 +69,7 @@ export function ChangePasswordForm({ onClose }: ChangePasswordFormProps) {
       </Box>
       <Box sx={{ mb: 3 }}>
         <TextField
+          type="password"
           label="New password"
           {...register("new_password", {
             required: {
@@ -93,6 +95,7 @@ export function ChangePasswordForm({ onClose }: ChangePasswordFormProps) {
       </Box>
       <Box sx={{ mb: 3 }}>
         <TextField
+          type="password"
           label="Re-new password"
           {...register("re_new_password", {
             validate: {

@@ -30,7 +30,14 @@ export function SignupForm() {
 
   const submit = (data: any) => {
     setLoading(true);
-    signupApiCall(ref ? { ...data, referrer: ref } : data)
+    signupApiCall(
+      ref
+        ? { ...data, referrer: ref }
+        : {
+            ...data,
+            referrer: data.referrer.length !== 0 ? data.referrer : undefined,
+          }
+    )
       .then((res) => {
         enqueueSnackbar("Logged in successfully", {
           variant: "success",

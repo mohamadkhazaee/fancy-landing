@@ -16,6 +16,11 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/templates/auth/reset-password"
+  ],
   "exclude": ["node_modules"]
 }
