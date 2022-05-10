@@ -43,7 +43,7 @@ export function ChangePasswordModal({
           alt="img"
         />
       </Box>
-      <ChangePasswordForm />
+      <ChangePasswordForm onClose={onClose} />
     </Modal>
   );
 }

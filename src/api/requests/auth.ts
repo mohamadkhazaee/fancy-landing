@@ -1,5 +1,10 @@
 import axios from "../config/axios";
-import { ConnectMetaMaskType, SigninType, SignupType } from "./types";
+import {
+  ConnectMetaMaskType,
+  SigninType,
+  SignupType,
+  ChangePassword,
+} from "./types";
 export function signupApiCall(data: SignupType) {
   return axios.post("/signup", data);
 }
@@ -11,4 +16,7 @@ export function connectMetaMask(data: ConnectMetaMaskType) {
 }
 export function getProfile() {
   return axios.get("/profile/info");
+}
+export function changePassword(data: ChangePassword) {
+  return axios.post("/profile/editpassword", data);
 }

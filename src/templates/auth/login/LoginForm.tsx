@@ -38,7 +38,7 @@ export function LoginForm() {
           });
         });
     },
-    [router]
+    [router, enqueueSnackbar]
   );
   return (
     <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>

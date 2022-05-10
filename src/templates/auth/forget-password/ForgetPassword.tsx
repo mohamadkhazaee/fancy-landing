@@ -4,7 +4,37 @@ import { AuthGradiant } from "../shared/components/AuthGradiant";
 import { BgToken } from "../shared/components/BgToken";
 import { AuthLayout } from "../shared/components/AuthLayout";
 import { FormWrapper } from "../shared/components/FormWrapper";
+import { useCallback, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useSnackbar } from "notistack";
+import { LoadingButton } from "@mui/lab";
 export function ForgetPassword() {
+  const { enqueueSnackbar } = useSnackbar();
+  const [loading, setLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = useCallback(
+    (data) => {
+      setLoading(true);
+      // loginApiCall(data)
+      //   .then((res) => {
+      //     enqueueSnackbar("Logged in successfully", {
+      //       variant: "success",
+      //     });
+      //     setLoading(false);
+      //   })
+      //   .catch(() => {
+      //     setLoading(false);
+      //     enqueueSnackbar("Try Again Later", {
+      //       variant: "error",
+      //     });
+      //   });
+    },
+    [enqueueSnackbar]
+  );
   return (
     <AuthLayout gradiantSrc="/BGblue.svg">
       <BgToken
@@ -26,22 +56,32 @@ export function ForgetPassword() {
         <Typography sx={{ fontWeight: "bold" }} variant="h4" mb={3}>
           Forgot Password
         </Typography>
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             sx={{ mb: 4 }}
             variant="outlined"
-            label="Email"
             autoFocus
             autoComplete="false"
-            name="emailfelan"
+            {...register("email", {
+              required: {
+                value: true,
+                message: "Email is Required",
+              },
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "Email is not valid",
+              },
+            })}
           />
-          <Button
+          <LoadingButton
+            loading={loading}
             sx={{ py: 1.5, fontSize: "1.2rem" }}
             fullWidth
             variant="contained"
           >
             Reset Password
-          </Button>
+          </LoadingButton>
           <Box
             sx={{
               display: "flex",

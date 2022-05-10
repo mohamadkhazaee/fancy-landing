@@ -11,3 +11,8 @@ export type ConnectMetaMaskType = {
   signature: string;
   account: string;
 };
+export type ChangePassword = {
+  old_password: string;
+  new_password: string;
+  re_new_password: string;
+};
