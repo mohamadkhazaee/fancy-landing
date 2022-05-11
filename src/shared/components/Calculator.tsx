@@ -1,4 +1,35 @@
-import { Box, MenuItem, Select, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  InputAdornment,
+  List,
+  ListItem,
+  ListItemIcon,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
+import Image from "next/image";
+
+function CalculatorMenuItem() {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+      }}
+    >
+      <ListItemIcon sx={{ minWidth: "auto !important", mr: 1 }}>
+        <Image width={25} height={25} src="/usdt.svg" alt="usdt" />
+      </ListItemIcon>
+      <Typography variant="body1" fontWeight="bold">
+        DAI
+      </Typography>
+    </Box>
+  );
+}
 
 export function Calculator() {
   return (
@@ -8,6 +39,7 @@ export function Calculator() {
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
+        maxWidth: 400,
       }}
     >
       <Typography variant="h6" mb={4}>
@@ -66,14 +98,29 @@ export function Calculator() {
               },
             }}
           >
-            <MenuItem value={1}>1 </MenuItem>
-            <MenuItem value={2}>2 </MenuItem>
-            <MenuItem value={3}>3 </MenuItem>
+            <MenuItem value={1}>
+              <CalculatorMenuItem />
+            </MenuItem>
+            <MenuItem value={1}>
+              <CalculatorMenuItem />
+            </MenuItem>
+            <MenuItem value={1}>
+              <CalculatorMenuItem />
+            </MenuItem>
           </Select>
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           <TextField
             variant="outlined"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <Typography variant="body1" color="white">
+                    MAX
+                  </Typography>
+                </InputAdornment>
+              ),
+            }}
             sx={{
               mt: 0,
               [`& fieldset`]: {
@@ -84,6 +131,48 @@ export function Calculator() {
           />
         </Box>
       </Box>
+      <Box
+        mt={3}
+        display="flex"
+        justifyContent="space-between"
+        sx={{ width: 1 }}
+      >
+        <Box>
+          <Typography variant="caption">APY</Typography>
+          <Typography variant="h6" fontWeight="bold" color="success.light">
+            9.52%
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="caption">Monthly earnings</Typography>
+          <Typography variant="h6" fontWeight="bold">
+            $39.67
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="caption">Yearly earnings</Typography>
+          <Typography variant="h6" fontWeight="bold">
+            $476.08
+          </Typography>
+        </Box>
+      </Box>
+      <Button fullWidth variant="contained" sx={{ py: 1.2, mt: 3 }}>
+        Deposit
+      </Button>
+      <List sx={{ mt: 2 }}>
+        <ListItem sx={{ display: "list-item", pt: 0, pb: 1 }}>
+          <Typography variant="caption" sx={{ fontSize: 12.5 }}>
+            • All figures are estimates provided for your convenience only, and
+            by no means represent guaranteed returns.
+          </Typography>
+        </ListItem>
+        <ListItem sx={{ display: "list-item", py: 0 }}>
+          <Typography variant="caption" sx={{ fontSize: 12.5 }}>
+            • All estimated rates take into account this pool’s 2% performance
+            fee
+          </Typography>
+        </ListItem>
+      </List>
     </Box>
   );
 }
