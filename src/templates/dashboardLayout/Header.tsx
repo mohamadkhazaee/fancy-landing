@@ -30,44 +30,56 @@ export function Header({ toggleMenu, open }: HeaderProps) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [loading, setLoading] = useState(false);
+  const [resetComp, setResetComp] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   const metamaskAddress = useMemo(() => {
-    if (!loading) {
+    if (!loading || resetComp) {
       return Cookies.get(METAMASK_INFO_KEYS.ADDRESS);
     }
-  }, [loading]);
+  }, [loading, resetComp]);
   const handleConnect = async () => {
+    setLoading(true);
     if (metamaskAddress) {
-      return;
-    }
-    if (typeof window.ethereum !== "undefined") {
-      setLoading(true);
-      await window.ethereum.enable();
-      const message = "Hello from Ethereum Stack Exchange!";
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts",
+      Cookies.remove(METAMASK_INFO_KEYS.ADDRESS, {
+        path: "/",
+        domain: router.basePath,
       });
-      const signature = await window.ethereum.request({
-        method: "personal_sign",
-        params: [message, accounts[0]],
+      Cookies.remove(METAMASK_INFO_KEYS.SIGNITURE, {
+        path: "/",
+        domain: router.basePath,
       });
-      connectMetaMask({ message, signature, account: accounts[0] })
-        .then(() => {
-          Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, accounts[0]);
-          Cookies.set(METAMASK_INFO_KEYS.ADDRESS, signature);
-          enqueueSnackbar("Connected to Metamask successfully", {
-            variant: "success",
-          });
-          setLoading(false);
-        })
-        .catch(() => {
-          setLoading(false);
-        });
+      setLoading(false);
+      setResetComp(true);
     } else {
-      enqueueSnackbar("No Metamask Wallet Detected!", {
-        variant: "error",
-      });
+      if (typeof window.ethereum !== "undefined") {
+        setLoading(true);
+        await window.ethereum.enable();
+        const message = "Hello from Ethereum Stack Exchange!";
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+        const signature = await window.ethereum.request({
+          method: "personal_sign",
+          params: [message, accounts[0]],
+        });
+        connectMetaMask({ message, signature, account: accounts[0] })
+          .then(() => {
+            Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, accounts[0]);
+            Cookies.set(METAMASK_INFO_KEYS.ADDRESS, signature);
+            enqueueSnackbar("Connected to Metamask successfully", {
+              variant: "success",
+            });
+            setLoading(false);
+          })
+          .catch(() => {
+            setLoading(false);
+          });
+      } else {
+        enqueueSnackbar("No Metamask Wallet Detected!", {
+          variant: "error",
+        });
+      }
     }
   };
   return (
