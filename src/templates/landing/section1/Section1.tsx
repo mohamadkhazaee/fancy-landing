@@ -4,6 +4,9 @@ import { TopGradiantDesktop } from "./TopGradiantDesktop";
 import { SolarBg } from "./SolarBg";
 import { InnerBox } from "./InnerBox";
 import { RedCoin, OrangeCoin, BlueCoin, YellowCoin, GreenCoin } from "./coins";
+import { RedGradiantMobile } from "./RedGradiantMobile";
+import { BlueGradiantMobile } from "./BlueGradiantMobile";
+import { OrangeGradiantMobile } from "./OrangeGradiantMobile";
 
 export function Section1() {
   return (
@@ -14,6 +17,7 @@ export function Section1() {
         justifyContent: "center",
         alignItems: "center",
         position: "relative",
+        mb: { xs: 30, md: 65 },
       }}
     >
       <Hidden mdDown>
@@ -24,8 +28,11 @@ export function Section1() {
       <Hidden mdUp>
         <YellowCoin />
         <BlueCoin />
+        <BlueGradiantMobile />
         <RedCoin />
+        <RedGradiantMobile />
         <OrangeCoin />
+        <OrangeGradiantMobile />
         <GreenCoin />
       </Hidden>
       <InnerBox />

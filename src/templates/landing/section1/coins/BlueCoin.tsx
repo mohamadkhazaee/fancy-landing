@@ -11,6 +11,7 @@ export function BlueCoin() {
         transform: "rotate(-15deg)",
         top: "60%",
         right: -40,
+        zIndex: 1,
       }}
     >
       <Image

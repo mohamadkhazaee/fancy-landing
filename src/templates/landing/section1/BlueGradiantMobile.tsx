@@ -1,20 +1,19 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
 
-export function OrangeCoin() {
+export function BlueGradiantMobile() {
   return (
     <Box
       sx={{
         position: "absolute",
-        width: 150,
-        height: 150,
-        top: "110%",
-        left: -65,
-        zIndex: 1,
+        width: 600,
+        height: 600,
+        top: "-15%",
+        right: -400,
       }}
     >
       <Image
-        src="/OrangeToken.png"
+        src="/Section1TopGradiant.png"
         layout="fill"
         objectFit="contain"
         width={764}

@@ -10,6 +10,7 @@ export function RedCoin() {
         height: 60,
         top: "50%",
         left: -35,
+        zIndex: 1,
       }}
     >
       <Image

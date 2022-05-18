@@ -20,7 +20,7 @@ export function InnerBox() {
           left: { xs: "-150%", md: "-125%" },
           width: "400%",
           height: "400%",
-          zIndex: 0,
+          zIndex: 2,
         }}
       >
         <Image
@@ -32,7 +32,7 @@ export function InnerBox() {
       </Box>
       <Box
         sx={{
-          zIndex: 1,
+          zIndex: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

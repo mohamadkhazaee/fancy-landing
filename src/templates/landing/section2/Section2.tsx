@@ -7,7 +7,7 @@ export function Section2() {
   return (
     <Box
       sx={{
-        mt: 60,
+        mt: 0,
         mb: 10,
         width: 1,
         display: "flex",
