@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1008" height="1329" viewBox="0 0 1008 1329">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="1008" height="1329" fill="none"/>
+    </clipPath>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.451" gradientTransform="translate(0 -0.096) scale(1 1.193)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#575757"/>
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#121212" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="Component_22_1" data-name="Component 22 – 1" opacity="0.775">
+    <g id="Repeat_Grid_3" data-name="Repeat Grid 3" clip-path="url(#clip-path)">
+      <g id="Repeat_Grid_4" data-name="Repeat Grid 4" clip-path="url(#clip-path)">
+        <ellipse id="Ellipse_64" data-name="Ellipse 64" cx="504" cy="664.5" rx="504" ry="664.5" opacity="0.39" fill="url(#radial-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

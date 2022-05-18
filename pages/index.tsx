@@ -4,11 +4,7 @@ import { Landing } from "../src/templates/landing";
 
 const Home = () => {
   const router = useRouter();
-  return (
-    <Button variant="contained" onClick={() => router.push("/login")}>
-      login
-    </Button>
-  );
+  return <Landing />;
 };
 
 export default Home;

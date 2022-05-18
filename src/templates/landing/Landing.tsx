@@ -1,38 +1,21 @@
 import { Box } from "@mui/system";
-import Image from "next/image";
+import { Section1 } from "./Section1";
+import { Section2 } from "./section2";
 export function Landing() {
   return (
-    <Box sx={{ backgroundColor: "neutral.n2", height: 100000 }}>
-      <Box
-        sx={{ height: "3000px", backgroundColor: "red", position: "relative" }}
-      >
-        <Box
-          sx={{
-            width: "90%",
-            height: "120vh",
-            backgroundColor: "blue",
-            borderRadius: "100%",
-            position: "absolute",
-            top: "-5%",
-            left: "5%",
-          }}
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              bottom: "034%",
-              right: "0%",
-            }}
-          >
-            <Image
-              src="/RedToken.png"
-              width="200px"
-              height="200px"
-              alt="token"
-            />
-          </Box>
-        </Box>
-      </Box>
+    <Box
+      sx={{
+        overflow: "hidden",
+        backgroundColor: "neutral.n2",
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        pt: 2,
+        flexDirection: "column",
+      }}
+    >
+      <Section1 />
+      <Section2 />
     </Box>
   );
 }
