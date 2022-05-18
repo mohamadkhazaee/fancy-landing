@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { Section1 } from "./Section1";
+import { Section1 } from "./section1/Section1";
 import { Section2 } from "./section2";
 export function Landing() {
   return (
