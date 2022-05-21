@@ -17,8 +17,8 @@ export function GreenCoin() {
         src="/GreenToken.png"
         layout="fill"
         objectFit="contain"
-        width={764}
-        height={764}
+        width={30}
+        height={30}
         alt=""
       />
     </Box>

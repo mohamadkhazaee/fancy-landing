@@ -16,6 +16,7 @@ declare module "@mui/material/styles" {
       n2: string;
       n3: string;
       n4: string;
+      mute: string;
     };
   }
   interface PaletteOptions {
@@ -24,6 +25,7 @@ declare module "@mui/material/styles" {
       n2: string;
       n3: string;
       n4: string;
+      mute: string;
     };
   }
 

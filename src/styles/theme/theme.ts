@@ -18,6 +18,7 @@ export const createTheme = () => {
         n2: "#1b1b1b",
         n3: "#252526",
         n4: "#343637",
+        mute: "#939393",
       },
     },
     typography: {
