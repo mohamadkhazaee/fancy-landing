@@ -22,7 +22,7 @@ export function ListItem({ title, icon }: ListItemProps) {
           alt=""
         />
       </Box>
-      <Typography ml={2} variant="body1" fontWeight="bold" textAlign="justify">
+      <Typography ml={2} variant="body1" fontWeight="bold">
         {title}
       </Typography>
     </Box>

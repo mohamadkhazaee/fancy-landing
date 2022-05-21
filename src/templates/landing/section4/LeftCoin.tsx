@@ -6,7 +6,7 @@ export function LeftCoin() {
     <Box
       sx={{
         position: "absolute",
-        top: 450,
+        top: 150,
         left: -250,
         width: 500,
         height: 500,

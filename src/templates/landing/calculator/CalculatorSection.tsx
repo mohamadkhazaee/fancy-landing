@@ -1,8 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { Calculator } from "src/shared/components";
+import { useIsMobile } from "src/shared/hooks";
 
 export function CalculatorSection() {
+  const isMobile = useIsMobile();
   return (
     <Box
       sx={{
@@ -47,7 +49,10 @@ export function CalculatorSection() {
             alt="token"
           />
         </Box>
-        <Typography variant="h3" textAlign="center">
+        <Typography
+          variant={isMobile ? "h5" : "h3"}
+          fontWeight={isMobile ? "bold" : undefined}
+        >
           Calculate Your Crypto Yield
         </Typography>
         <Typography

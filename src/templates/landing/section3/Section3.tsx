@@ -9,7 +9,7 @@ export function Section3() {
     <Box
       sx={{
         mt: { xs: 5, md: 30 },
-        mb: 30,
+        mb: { xs: 10, md: 30 },
         width: 1,
         display: "flex",
         justifyContent: "center",
