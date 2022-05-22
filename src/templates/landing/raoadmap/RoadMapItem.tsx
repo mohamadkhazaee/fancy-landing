@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { useIsMobile } from "src/shared/hooks";
 
 interface RoadMapItemProps {
   index: number;
@@ -7,17 +8,19 @@ interface RoadMapItemProps {
   status: "DONE" | "DOING" | "UPCOMMING";
 }
 export function RoadMapItem({ index, date, items, status }: RoadMapItemProps) {
+  const isMobile = useIsMobile();
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         alignItems: "flex-start",
         mb: 3,
+        maxWidth: 450,
       }}
     >
-      <Box sx={{ mr: 8 }}>
-        <Typography variant="h5" fontWeight="bold">
+      <Box>
+        <Typography variant={isMobile ? "h6" : "h5"} fontWeight="bold">
           STEP 0{index}
         </Typography>
         <Typography variant="subtitle1" textAlign="right">
@@ -25,7 +28,7 @@ export function RoadMapItem({ index, date, items, status }: RoadMapItemProps) {
         </Typography>
       </Box>
 
-      <Box sx={{ maxWidth: 300 }}>
+      <Box sx={{ width: "60%" }}>
         {items.map((i) => (
           <Box
             key={i}
