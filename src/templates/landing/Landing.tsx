@@ -1,7 +1,9 @@
 import { Box } from "@mui/system";
 import { CalculatorSection } from "./calculator";
+import { Footer } from "./footer";
 import { GetStartedSection } from "./get-started";
-import { GetUpdates } from "./get-updates/GetUpdates";
+import { GetUpdates } from "./get-updates";
+import { RoadMap } from "./raoadmap/RoadMap";
 import { Section1 } from "./section1";
 import { Section2 } from "./section2";
 import { Section3 } from "./section3";
@@ -25,7 +27,9 @@ export function Landing() {
       <Section4 />
       <GetStartedSection />
       <CalculatorSection />
+      <RoadMap />
       <GetUpdates />
+      <Footer />
     </Box>
   );
 }
