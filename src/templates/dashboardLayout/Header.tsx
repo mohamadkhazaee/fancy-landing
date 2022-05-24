@@ -114,7 +114,7 @@ export function Header({ toggleMenu, open }: HeaderProps) {
           px: 2,
         }}
       >
-        <Image src="/Logo.svg" width={100} height={40} alt="CRYPTAL Logo" />
+        <Image src="/Logo.svg" width={100} height={20} alt="CRYPTAL Logo" />
         <IconButton onClick={toggleMenu}>
           {open ? (
             <SvgIcon

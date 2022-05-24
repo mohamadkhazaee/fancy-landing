@@ -38,7 +38,7 @@ export function AuthLayout({ children, gradiantSrc }: ForgetPasswordProps) {
       >
         <Link href="/" passHref>
           <a>
-            <Image src="/Logo.svg" width={100} height={40} alt="CRYPTAL Logo" />
+            <Image src="/Logo.svg" width={100} height={20} alt="CRYPTAL Logo" />
           </a>
         </Link>
       </Box>

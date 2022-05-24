@@ -37,6 +37,7 @@ export function InnerBox() {
           flexDirection: "column",
           alignItems: "center",
           position: "relative",
+          mt: 10,
         }}
       >
         <Image

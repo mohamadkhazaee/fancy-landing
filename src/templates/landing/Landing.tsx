@@ -3,7 +3,8 @@ import { CalculatorSection } from "./calculator";
 import { Footer } from "./footer";
 import { GetStartedSection } from "./get-started";
 import { GetUpdates } from "./get-updates";
-import { RoadMap } from "./raoadmap/RoadMap";
+import { Header } from "./header";
+import { RoadMap } from "./raoadmap";
 import { Section1 } from "./section1";
 import { Section2 } from "./section2";
 import { Section3 } from "./section3";
@@ -17,10 +18,11 @@ export function Landing() {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        pt: 2,
         flexDirection: "column",
+        position: "relative",
       }}
     >
+      <Header />
       <Section1 />
       <Section2 />
       <Section3 />
