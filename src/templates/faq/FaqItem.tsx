@@ -28,7 +28,7 @@ export function FaqItem({ title, desc }: FaqItemProps) {
           variant={!isMobile ? "h4" : "h6"}
           fontWeight="bold"
           mr={3}
-          sx={{ width: 20 }}
+          sx={{ color: "#ffe203", width: 20 }}
         >
           {!open ? "+" : "-"}
         </Typography>
