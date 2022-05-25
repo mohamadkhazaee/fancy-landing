@@ -23,7 +23,7 @@ export function Step2() {
             height: 350,
             top: 0,
             left: -150,
-            zIndex: 1,
+            zIndex: 2,
           }}
         >
           <Image
@@ -42,7 +42,7 @@ export function Step2() {
             height: 700,
             top: -200,
             left: -350,
-            zIndex: 0,
+            zIndex: 1,
           }}
         >
           <Image
