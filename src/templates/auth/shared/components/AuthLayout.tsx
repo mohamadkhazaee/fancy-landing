@@ -26,7 +26,7 @@ export function AuthLayout({ children, gradiantSrc }: ForgetPasswordProps) {
       <Box
         sx={{
           position: { md: "absolute" },
-          top: 0,
+          top: 20,
           left: 0,
           zIndex: 10,
           height: { xs: "8vh", md: "auto" },

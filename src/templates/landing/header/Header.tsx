@@ -1,9 +1,13 @@
 import { Box, Button, Hidden, Link as MuiLink } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { getToken } from "src/shared/utils";
 import { MenuItem } from "./MenuItem";
 
 export function Header() {
+  const router = useRouter();
+  const token = getToken();
   return (
     <Box
       sx={{
@@ -42,9 +46,23 @@ export function Header() {
           </Box>
         </Hidden>
         <Box>
-          <Button variant="outlined" sx={{ py: 0.1 }}>
-            Login
-          </Button>
+          {token ? (
+            <Button
+              onClick={() => router.push("/dashboard")}
+              variant="outlined"
+              sx={{ py: 0.1 }}
+            >
+              Dashboard
+            </Button>
+          ) : (
+            <Button
+              onClick={() => router.push("/login")}
+              variant="outlined"
+              sx={{ py: 0.1 }}
+            >
+              Login
+            </Button>
+          )}
         </Box>
       </Box>
     </Box>

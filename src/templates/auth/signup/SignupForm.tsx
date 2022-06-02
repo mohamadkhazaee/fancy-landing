@@ -15,8 +15,10 @@ import { useForm } from "react-hook-form";
 import { signupApiCall } from "src/api";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useSnackbar } from "notistack";
+import { Modal } from "src/shared/components";
 export function SignupForm() {
   const { enqueueSnackbar } = useSnackbar();
+  const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -56,133 +58,164 @@ export function SignupForm() {
       });
   };
   return (
-    <form autoComplete="off" onSubmit={handleSubmit(submit)}>
-      <Box mb={errors?.email?.message ? 2 : 3}>
-        <TextField
-          variant="outlined"
-          label="Email"
-          autoFocus
-          autoComplete="false"
-          error={errors.email}
-          {...register("email", {
-            required: {
-              value: true,
-              message: "Email is Required",
-            },
-            pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Email is not valid",
-            },
-          })}
-        />
-        {errors?.email && (
-          <Typography variant="caption" color="error.main" fontWeight="bold">
-            {errors.email.message}
-          </Typography>
-        )}
-      </Box>
-      <Box mb={errors?.email?.message ? 2 : 3}>
-        <TextField
-          type="password"
-          variant="outlined"
-          label="Password"
-          error={errors.password}
-          {...register("password", {
-            required: {
-              value: true,
-              message: "Password is Required",
-            },
-            minLength: {
-              value: 8,
-              message: "minimum length is 8 character",
-            },
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-              message:
-                "password should contain numbers and letters with mixed case",
-            },
-          })}
-        />
-        {errors?.password && (
-          <Typography variant="caption" color="error.main" fontWeight="bold">
-            {errors.password.message}
-          </Typography>
-        )}
-      </Box>
-      <Box mb={errors?.email?.message ? 2 : 3}>
-        <TextField
-          type="password"
-          variant="outlined"
-          label="Repeat Password"
-          {...register("re_password", {
-            validate: {
-              emailEqual: (value) =>
-                value === getValues().password ||
-                "Repeat password doesn't match!",
-            },
-          })}
-        />
-        {errors?.re_password && (
-          <Typography variant="caption" color="error.main" fontWeight="bold">
-            {errors.re_password.message}
-          </Typography>
-        )}
-      </Box>
-
-      {!ref && (
-        <Box mb={1}>
+    <>
+      <form autoComplete="off" onSubmit={handleSubmit(submit)}>
+        <Box mb={errors?.email?.message ? 2 : 3}>
           <TextField
-            type="text"
             variant="outlined"
-            label="Invite Code"
-            {...register("referrer")}
+            label="Email"
+            autoFocus
+            autoComplete="false"
+            error={errors.email}
+            {...register("email", {
+              required: {
+                value: true,
+                message: "Email is Required",
+              },
+              pattern: {
+                value:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "Email is not valid",
+              },
+            })}
           />
+          {errors?.email && (
+            <Typography variant="caption" color="error.main" fontWeight="bold">
+              {errors.email.message}
+            </Typography>
+          )}
         </Box>
-      )}
+        <Box mb={errors?.email?.message ? 2 : 3}>
+          <TextField
+            type="password"
+            variant="outlined"
+            label="Password"
+            error={errors.password}
+            {...register("password", {
+              required: {
+                value: true,
+                message: "Password is Required",
+              },
+              minLength: {
+                value: 8,
+                message: "minimum length is 8 character",
+              },
+              pattern: {
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+                message:
+                  "password should contain numbers and letters with mixed case",
+              },
+            })}
+          />
+          {errors?.password && (
+            <Typography variant="caption" color="error.main" fontWeight="bold">
+              {errors.password.message}
+            </Typography>
+          )}
+        </Box>
+        <Box mb={errors?.email?.message ? 2 : 3}>
+          <TextField
+            type="password"
+            variant="outlined"
+            label="Repeat Password"
+            {...register("re_password", {
+              validate: {
+                emailEqual: (value) =>
+                  value === getValues().password ||
+                  "Repeat password doesn't match!",
+              },
+            })}
+          />
+          {errors?.re_password && (
+            <Typography variant="caption" color="error.main" fontWeight="bold">
+              {errors.re_password.message}
+            </Typography>
+          )}
+        </Box>
 
-      <FormControlLabel
-        sx={{ mb: 2 }}
-        control={<Checkbox defaultChecked />}
-        label={
-          <Typography variant="caption">
-            I herbey confrim that I have read and agree to the terms &
-            conditions and Privacy Policy of Cryptal
-          </Typography>
-        }
-      />
-      <LoadingButton
-        type="submit"
-        sx={{ py: 1.5, fontSize: "1.2rem" }}
-        fullWidth
-        variant="contained"
-        loading={loading}
-      >
-        Create New Account
-      </LoadingButton>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          mt: 2,
-        }}
-      >
-        <Box display="flex" alignItems="center">
-          <Typography variant="caption">
-            Already Have a Cryptal Account?
-          </Typography>
-          <Link href="/login" passHref>
+        {!ref && (
+          <Box mb={1}>
+            <TextField
+              type="text"
+              variant="outlined"
+              label="Invite Code"
+              {...register("referrer")}
+            />
+          </Box>
+        )}
+
+        <FormControlLabel
+          control={<Checkbox defaultChecked />}
+          label={
+            <Typography variant="caption" mb={2}>
+              I herbey confrim that I have read and agree to the terms &
+              conditions and Privacy Policy of Cryptal.
+            </Typography>
+          }
+        />
+
+        <LoadingButton
+          type="submit"
+          sx={{ py: 1.5, fontSize: "1.2rem" }}
+          fullWidth
+          variant="contained"
+          loading={loading}
+        >
+          Create New Account
+        </LoadingButton>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            mt: 2,
+          }}
+        >
+          <Box display="flex" alignItems="center">
+            <Typography variant="caption">
+              Already Have a Cryptal Account?
+            </Typography>
+            <Link href="/login" passHref>
+              <Button
+                sx={{ maxWidth: "250px", mx: "auto", px: 1 }}
+                variant="text"
+                component="a"
+              >
+                Login
+              </Button>
+            </Link>
             <Button
               sx={{ maxWidth: "250px", mx: "auto", px: 1 }}
               variant="text"
-              component="a"
+              onClick={() => setModal(true)}
             >
-              Login
+              terms & conditions
             </Button>
-          </Link>
+          </Box>
         </Box>
-      </Box>
-    </form>
+      </form>
+      <Modal
+        open={modal}
+        onClose={() => setModal(false)}
+        containerSx={{ maxWidth: 600 }}
+      >
+        <Typography variant="body1" mb={2}>
+          1- Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </Typography>
+        <Typography variant="body1" mb={2}>
+          2- Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when a
+        </Typography>
+        <Typography variant="body1" mb={2}>
+          3- Lorem Ipsum is simply dummy text of the printing and typesetting
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </Typography>
+      </Modal>
+    </>
   );
 }
