@@ -1,15 +1,18 @@
 import { Box } from "@mui/system";
+import { useState } from "react";
 import { CalculatorSection } from "./calculator";
 import { Footer } from "./footer";
 import { GetStartedSection } from "./get-started";
 import { GetUpdates } from "./get-updates";
 import { Header } from "./header";
+import { BurgurMenu } from "./header/BurgurMenu";
 import { RoadMap } from "./raoadmap";
 import { Section1 } from "./section1";
 import { Section2 } from "./section2";
 import { Section3 } from "./section3";
 import { Section4 } from "./section4";
 export function Landing() {
+  const [menu, setMenu] = useState(false);
   return (
     <Box
       sx={{
@@ -22,7 +25,8 @@ export function Landing() {
         position: "relative",
       }}
     >
-      <Header />
+      <BurgurMenu open={menu} onClose={() => setMenu(false)} />
+      <Header open={menu} openMenu={() => setMenu(true)} />
       <Section1 />
       <Section2 />
       <Section3 />

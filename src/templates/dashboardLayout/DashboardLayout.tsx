@@ -1,11 +1,4 @@
-import {
-  Backdrop,
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Backdrop, Box, Typography } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import { Header } from "./Header";

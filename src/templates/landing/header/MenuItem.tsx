@@ -1,10 +1,14 @@
 import { Divider } from "@mui/material";
 import Link from "next/link";
 
-export function MenuItem() {
+interface MenuItemProps {
+  title: string;
+  href: string;
+}
+export function MenuItem({ title, href }: MenuItemProps) {
   return (
     <>
-      <Link href="/">
+      <Link href={href}>
         <a
           style={{
             textDecoration: "none",
@@ -15,7 +19,7 @@ export function MenuItem() {
             paddingRight: 10,
           }}
         >
-          Blog
+          {title}
         </a>
       </Link>
     </>

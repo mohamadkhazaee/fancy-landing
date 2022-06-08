@@ -1,13 +1,19 @@
-import { Box, Button, Hidden, Link as MuiLink } from "@mui/material";
+import { Box, Button, Hidden, IconButton, SvgIcon } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getToken } from "src/shared/utils";
 import { MenuItem } from "./MenuItem";
+import MenuIcon from "src/icons/MenuIcon.svg";
+import CloseIcon from "src/icons/CloseIcon.svg";
 
-export function Header() {
+interface HeaderProps {
+  openMenu: () => void;
+  open: boolean;
+}
+export function Header({ openMenu, open }: HeaderProps) {
   const router = useRouter();
-  const token = getToken();
+  const { token } = getToken();
   return (
     <Box
       sx={{
@@ -33,16 +39,42 @@ export function Header() {
           px: { xs: 2, md: 0 },
         }}
       >
-        <Box sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
-          <Link href="/" passHref>
-            <Image src="/Logo.svg" width={100} height={20} alt="CRYPTAL Logo" />
-          </Link>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <IconButton sx={{ mr: 1 }} onClick={openMenu}>
+            {open ? (
+              <SvgIcon
+                sx={{ display: { md: "none" } }}
+                htmlColor="#fff"
+                viewBox="0 0 50 50"
+                component={CloseIcon}
+              />
+            ) : (
+              <SvgIcon
+                sx={{ display: { md: "none" } }}
+                htmlColor="#fff"
+                viewBox="0 0 30 30"
+                component={MenuIcon}
+              />
+            )}
+          </IconButton>
+          <Box
+            sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+          >
+            <Link href="/" passHref>
+              <Image
+                src="/Logo.svg"
+                width={100}
+                height={20}
+                alt="CRYPTAL Logo"
+              />
+            </Link>
+          </Box>
         </Box>
         <Hidden mdDown>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <MenuItem />
-            <MenuItem />
-            <MenuItem />
+            <MenuItem title="Faq" href="/faq" />
+            <MenuItem title="Mines" href="/mines/felan" />
+            <MenuItem title="Blog" href="/" />
           </Box>
         </Hidden>
         <Box>
