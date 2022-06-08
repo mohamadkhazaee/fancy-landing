@@ -2,7 +2,6 @@ import type { AppProps } from "next/app";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../src/styles/theme";
-import "src/styles/stylesheet.css";
 import { UserContextProvider } from "../src/contexts";
 import { SnackbarProvider } from "notistack";
 
