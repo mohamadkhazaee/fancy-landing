@@ -12,7 +12,6 @@ import { Section2 } from "./section2";
 import { Section3 } from "./section3";
 import { Section4 } from "./section4";
 export function Landing() {
-  const [menu, setMenu] = useState(false);
   return (
     <Box
       sx={{
@@ -25,8 +24,7 @@ export function Landing() {
         position: "relative",
       }}
     >
-      <BurgerMenu open={menu} onClose={() => setMenu(false)} />
-      <Header open={menu} openMenu={() => setMenu(true)} />
+      <Header />
       <Section1 />
       <Section2 />
       <Section3 />
