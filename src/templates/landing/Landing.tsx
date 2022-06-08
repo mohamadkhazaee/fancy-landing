@@ -5,7 +5,7 @@ import { Footer } from "./footer";
 import { GetStartedSection } from "./get-started";
 import { GetUpdates } from "./get-updates";
 import { Header } from "./header";
-import { BurgurMenu } from "./header/BurgurMenu";
+import { BurgerMenu } from "./header/BurgerMenu";
 import { RoadMap } from "./raoadmap";
 import { Section1 } from "./section1";
 import { Section2 } from "./section2";
@@ -25,7 +25,7 @@ export function Landing() {
         position: "relative",
       }}
     >
-      <BurgurMenu open={menu} onClose={() => setMenu(false)} />
+      <BurgerMenu open={menu} onClose={() => setMenu(false)} />
       <Header open={menu} openMenu={() => setMenu(true)} />
       <Section1 />
       <Section2 />

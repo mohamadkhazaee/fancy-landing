@@ -6,13 +6,12 @@ import SwapIcon from "src/icons/SwapIcon.svg";
 import PortfolioIcon from "src/icons/PortfolioIcon.svg";
 import NFTIcon from "src/icons/NFTIcon.svg";
 import GameIcon from "src/icons/GameIcon.svg";
-
 import PoolsIcon from "src/icons/PoolsIcon.svg";
 interface BurgurMenuProps {
   open: boolean;
   onClose: () => void;
 }
-export function BurgurMenu({ open, onClose }: BurgurMenuProps) {
+export function BurgerMenu({ open, onClose }: BurgurMenuProps) {
   return (
     <>
       <Box
