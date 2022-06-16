@@ -11,6 +11,7 @@ import TelegramIcon from "src/icons/TelegramIcon.svg";
 import YoutubeIcon from "src/icons/YoutubeIcon.svg";
 import PoolsIcon from "src/icons/PoolsIcon.svg";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
+import Link from "next/link";
 
 interface SidebarProps {
   menu: boolean;
@@ -135,12 +136,17 @@ export function Sidebar({ menu }: SidebarProps) {
             />
           </IconButton>
           <IconButton disableRipple>
-            <SvgIcon
-              htmlColor="#fff"
-              viewBox="0 0 35 35"
-              fontSize="medium"
-              component={MediumIcon}
-            />
+            <Link
+              href="https://www.linkedin.com/in/cryptal-global-390aa2241/"
+              passHref
+            >
+              <SvgIcon
+                htmlColor="#fff"
+                viewBox="0 0 35 35"
+                fontSize="medium"
+                component={MediumIcon}
+              />
+            </Link>
           </IconButton>
           <IconButton disableRipple>
             <SvgIcon
@@ -151,12 +157,17 @@ export function Sidebar({ menu }: SidebarProps) {
             />
           </IconButton>
           <IconButton disableRipple>
-            <SvgIcon
-              htmlColor="#fff"
-              viewBox="0 0 35 35"
-              fontSize="large"
-              component={YoutubeIcon}
-            />
+            <Link
+              href="https://www.youtube.com/channel/UCSVUUS0yvvTOSoVJ_NsgR_Q"
+              passHref
+            >
+              <SvgIcon
+                htmlColor="#fff"
+                viewBox="0 0 35 35"
+                fontSize="large"
+                component={YoutubeIcon}
+              />
+            </Link>
           </IconButton>
         </Box>
       </Box>
