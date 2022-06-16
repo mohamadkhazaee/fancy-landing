@@ -72,7 +72,7 @@ export function Header() {
           </Box>
           <Hidden mdDown>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <MenuItem title="Faq" href="/faq" />
+              <MenuItem title="FAQs" href="/faq" />
               <MenuItem title="Mines" href="/mines/felan" />
               <MenuItem title="Blog" href="/" />
             </Box>
