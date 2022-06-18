@@ -1,9 +1,12 @@
 import { Grid, Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
+import { Modal } from "src/shared/components";
 import { useIsMobile } from "src/shared/hooks";
 
 export function Banner() {
   const isMobile = useIsMobile();
+  const [modal, setModal] = useState(false);
   return (
     <Box
       sx={{
@@ -24,6 +27,7 @@ export function Banner() {
             flexDirection="column"
             justifyContent="flex-start"
             alignItems="flex-start"
+            sx={{ mb: { xs: 5, md: 0 } }}
           >
             <Typography
               variant={isMobile ? "body1" : "h4"}
@@ -38,6 +42,7 @@ export function Banner() {
             <Button
               disableRipple
               variant="text"
+              onClick={() => setModal(true)}
               sx={{ background: "transparent !important", p: 0, mb: 2 }}
             >
               How it works?
@@ -62,6 +67,22 @@ export function Banner() {
           </Box>
         </Grid>
       </Grid>
+      <Modal
+        open={modal}
+        onClose={() => setModal(false)}
+        containerSx={{ maxWidth: 600 }}
+      >
+        <Typography variant="body1" mb={2}>
+          1.Promote the Cryptal platform to your friends
+        </Typography>
+        <Typography variant="body1" mb={2}>
+          2.Introduce your clients to Cryptal
+        </Typography>
+        <Typography variant="body1" mb={2}>
+          3.When your referrals join Crypal and deposit, you can earn up to 3%
+          of their deposits.{" "}
+        </Typography>
+      </Modal>
     </Box>
   );
 }

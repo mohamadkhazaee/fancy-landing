@@ -1,4 +1,4 @@
-import { Button, Grid, Box, Chip } from "@mui/material";
+import { Button, Grid, Box, Chip, Hidden } from "@mui/material";
 import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "./InfoWidget";
 import { PoolTableRow } from "src/templates/pools";
@@ -29,9 +29,11 @@ export function Dashboard() {
           />
         </Grid>
 
-        <Grid item xs={12} container>
-          <Banner />
-        </Grid>
+        <Hidden mdDown>
+          <Grid item xs={12} container>
+            <Banner />
+          </Grid>
+        </Hidden>
         <Grid item xs={12}>
           <InfoWidget title="Pools">
             <Box>
@@ -44,6 +46,11 @@ export function Dashboard() {
             </Box>
           </InfoWidget>
         </Grid>
+        <Hidden mdUp>
+          <Grid item xs={12} container>
+            <Banner />
+          </Grid>
+        </Hidden>
       </Grid>
     </DashboardLayout>
   );

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Hidden,
   InputAdornment,
   List,
   ListItem,
@@ -11,8 +12,10 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { useIsMobile } from "../hooks";
 
 function CalculatorMenuItem() {
+  const isMobile = useIsMobile();
   return (
     <Box
       sx={{
@@ -22,11 +25,18 @@ function CalculatorMenuItem() {
       }}
     >
       <ListItemIcon sx={{ minWidth: "auto !important", mr: 1 }}>
-        <Image width={25} height={25} src="/usdt.svg" alt="usdt" />
+        <Image
+          width={isMobile ? 20 : 25}
+          height={isMobile ? 20 : 25}
+          src="/usdt.svg"
+          alt="usdt"
+        />
       </ListItemIcon>
-      <Typography variant="body1" fontWeight="bold">
-        DAI
-      </Typography>
+      <Hidden mdDown>
+        <Typography variant="body1" fontWeight="bold">
+          DAI
+        </Typography>
+      </Hidden>
     </Box>
   );
 }

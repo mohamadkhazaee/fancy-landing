@@ -16,6 +16,7 @@ import { signupApiCall } from "src/api";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useSnackbar } from "notistack";
 import { Modal } from "src/shared/components";
+import { TERMSANDCONDITIONS } from "./constants";
 export function SignupForm() {
   const { enqueueSnackbar } = useSnackbar();
   const [modal, setModal] = useState(false);
@@ -171,7 +172,11 @@ export function SignupForm() {
             mt: 2,
           }}
         >
-          <Box display="flex" alignItems="center">
+          <Box
+            display="flex"
+            alignItems="center"
+            sx={{ flexDirection: { xs: "column", md: "row" } }}
+          >
             <Typography variant="caption">
               Already Have a Cryptal Account?
             </Typography>
@@ -199,22 +204,11 @@ export function SignupForm() {
         onClose={() => setModal(false)}
         containerSx={{ maxWidth: 600 }}
       >
-        <Typography variant="body1" mb={2}>
-          1- Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </Typography>
-        <Typography variant="body1" mb={2}>
-          2- Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when a
-        </Typography>
-        <Typography variant="body1" mb={2}>
-          3- Lorem Ipsum is simply dummy text of the printing and typesetting
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </Typography>
+        {TERMSANDCONDITIONS.map((i) => (
+          <Typography key={i} variant="body1" mb={2}>
+            {i}
+          </Typography>
+        ))}
       </Modal>
     </>
   );

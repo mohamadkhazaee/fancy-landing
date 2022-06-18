@@ -13,8 +13,25 @@ export function CalculatorSection() {
         px: 2,
         width: 1,
         position: "relative",
+        my: { xs: 10, md: 50 },
       }}
     >
+      <Box
+        sx={{
+          width: 1,
+          mt: 7,
+          position: "absolute",
+          bottom: { xs: "-20%", md: "-70%" },
+        }}
+      >
+        <Image
+          src="/MultiLayerBottom.png"
+          layout="responsive"
+          width={1669}
+          height={894}
+          alt=""
+        />
+      </Box>
       <Box
         sx={{
           maxWidth: 750,

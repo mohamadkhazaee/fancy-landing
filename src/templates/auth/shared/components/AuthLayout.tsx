@@ -16,7 +16,7 @@ export function AuthLayout({ children, gradiantSrc }: ForgetPasswordProps) {
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        overflow: "hidden",
+        overflowX: "hidden",
         flexDirection: "column",
         backgroundImage: `url(${BGImage})`,
         // background:

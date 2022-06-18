@@ -8,6 +8,7 @@ const style = {
   boxShadow: 24,
   borderRadius: 3,
   p: 3,
+  maxHeight: "90%",
 };
 interface ModalProps {
   open: boolean;
@@ -35,7 +36,13 @@ export function Modal({
       }}
     >
       <Box
-        sx={{ backgroundColor: "neutral.n1", ...style, px: 5, ...containerSx }}
+        sx={{
+          backgroundColor: "neutral.n1",
+          ...style,
+          px: 5,
+          ...containerSx,
+          overflowY: "scroll",
+        }}
       >
         {children}
       </Box>

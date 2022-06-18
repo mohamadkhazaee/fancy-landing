@@ -16,6 +16,7 @@ export function FormWrapper({ children }: PropsWithChildren<{}>) {
         px: 5,
         pt: 5,
         pb: 3,
+        overflowY: "scroll",
       }}
     >
       {children}

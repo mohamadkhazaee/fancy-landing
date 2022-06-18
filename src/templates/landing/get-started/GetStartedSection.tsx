@@ -46,21 +46,6 @@ export function GetStartedSection() {
       </Typography>
       <Step1 />
       <Step2 />
-      <Box
-        sx={{
-          width: 1,
-          mt: 7,
-          position: "relative",
-        }}
-      >
-        <Image
-          src="/MultiLayerBottom.png"
-          layout="responsive"
-          width={1669}
-          height={894}
-          alt=""
-        />
-      </Box>
     </Box>
   );
 }
