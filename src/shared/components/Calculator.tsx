@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 import { useIsMobile } from "../hooks";
 
 function CalculatorMenuItem() {
@@ -42,6 +43,7 @@ function CalculatorMenuItem() {
 }
 
 export function Calculator() {
+  const [value, setValue] = useState("");
   return (
     <Box
       sx={{
@@ -65,9 +67,9 @@ export function Calculator() {
         }}
       >
         <Typography variant="caption">Choose Token</Typography>
-        <Typography variant="body1" fontWeight="bold">
+        {/* <Typography variant="body1" fontWeight="bold">
           $ 5000.89
-        </Typography>
+        </Typography> */}
       </Box>
       <Box
         sx={{
@@ -111,17 +113,13 @@ export function Calculator() {
             <MenuItem value={1}>
               <CalculatorMenuItem />
             </MenuItem>
-            <MenuItem value={1}>
-              <CalculatorMenuItem />
-            </MenuItem>
-            <MenuItem value={1}>
-              <CalculatorMenuItem />
-            </MenuItem>
           </Select>
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           <TextField
             variant="outlined"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -150,19 +148,21 @@ export function Calculator() {
         <Box>
           <Typography variant="caption">APY</Typography>
           <Typography variant="h6" fontWeight="bold" color="success.light">
-            9.52%
+            20%
           </Typography>
         </Box>
         <Box>
           <Typography variant="caption">Monthly earnings</Typography>
           <Typography variant="h6" fontWeight="bold">
-            $39.67
+            {!value.length
+              ? "-"
+              : `$${parseFloat(((+value * 0.2) / 12).toFixed(4))}`}
           </Typography>
         </Box>
         <Box>
           <Typography variant="caption">Yearly earnings</Typography>
           <Typography variant="h6" fontWeight="bold">
-            $476.08
+            {!value.length ? "-" : `$${parseFloat((+value * 0.2).toFixed(4))}`}
           </Typography>
         </Box>
       </Box>

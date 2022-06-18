@@ -31,7 +31,7 @@ export function Header() {
       >
         <Box
           sx={{
-            maxWidth: 1000,
+            maxWidth: 1200,
             width: 1,
             display: "flex",
             justifyContent: "space-between",
@@ -39,7 +39,7 @@ export function Header() {
             px: { xs: 2, md: 0 },
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center", width: "30%" }}>
             <IconButton sx={{ mr: 1 }} onClick={() => setMenu(true)}>
               {menu ? (
                 <SvgIcon
@@ -71,13 +71,29 @@ export function Header() {
             </Box>
           </Box>
           <Hidden mdDown>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <MenuItem title="FAQs" href="/faq" />
               <MenuItem title="Asset" href="/asset" />
               <MenuItem title="Blog" href="/" />
             </Box>
           </Hidden>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              flexDirection: "row-reverse",
+              gap: 2,
+              pr: { md: 2 },
+              width: "30%",
+            }}
+          >
             {token ? (
               <Button
                 onClick={() => router.push("/dashboard")}
@@ -95,6 +111,21 @@ export function Header() {
                 Login
               </Button>
             )}
+            <Hidden mdDown>
+              <Link href="/">
+                <a
+                  style={{
+                    textDecoration: "none",
+                    fontWeight: "bold",
+                    marginRight: 10,
+                    paddingRight: 10,
+                    color: "#fff",
+                  }}
+                >
+                  Social Media
+                </a>
+              </Link>
+            </Hidden>
           </Box>
         </Box>
       </Box>

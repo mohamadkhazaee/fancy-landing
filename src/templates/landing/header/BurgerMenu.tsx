@@ -47,8 +47,8 @@ export function BurgerMenu({ open, onClose }: BurgurMenuProps) {
             }
           />
           <SidebarMenuItem
-            title="Portfolio"
-            href="/dashboard/portfolio"
+            title="FAQs"
+            href="/faq"
             icon={
               <SvgIcon
                 viewBox="0 0 36 30"
