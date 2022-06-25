@@ -17,6 +17,7 @@ import { COOKIE_NAME } from "src/shared/utils";
 import { useSnackbar } from "notistack";
 import { Modal } from "src/shared/components";
 import { TERMSANDCONDITIONS } from "./constants";
+import { TermsModal } from "./TermsModal";
 export function SignupForm() {
   const { enqueueSnackbar } = useSnackbar();
   const [modal, setModal] = useState(false);
@@ -199,17 +200,7 @@ export function SignupForm() {
           </Box>
         </Box>
       </form>
-      <Modal
-        open={modal}
-        onClose={() => setModal(false)}
-        containerSx={{ maxWidth: 600 }}
-      >
-        {TERMSANDCONDITIONS.map((i) => (
-          <Typography key={i} variant="body1" mb={2}>
-            {i}
-          </Typography>
-        ))}
-      </Modal>
+      <TermsModal open={modal} onClose={() => setModal(false)} />
     </>
   );
 }

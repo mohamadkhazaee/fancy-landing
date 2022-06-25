@@ -1,16 +1,29 @@
-import { Box, Button, Hidden, IconButton, SvgIcon } from "@mui/material";
+import {
+  Box,
+  Button,
+  Hidden,
+  IconButton,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem as MuiMenuItem,
+  SvgIcon,
+} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getToken } from "src/shared/utils";
-import { MenuItem } from "./MenuItem";
 import MenuIcon from "src/icons/MenuIcon.svg";
 import CloseIcon from "src/icons/CloseIcon.svg";
 import { BurgerMenu } from "./BurgerMenu";
 import { useState } from "react";
-
+import { MenuItem } from "./MenuItem";
+import TwitterIcon from "src/icons/TwitterIcon.svg";
+import TelegramIcon from "src/icons/TelegramIcon.svg";
+import YoutubeIcon from "src/icons/YoutubeIcon.svg";
 export function Header() {
   const [menu, setMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const router = useRouter();
   const { token } = getToken();
   return (
@@ -78,6 +91,7 @@ export function Header() {
                 justifyContent: "center",
               }}
             >
+              <MenuItem title="Home" href="/" />
               <MenuItem title="FAQs" href="/faq" />
               <MenuItem title="Asset" href="/asset" />
               <MenuItem title="Blog" href="/" />
@@ -112,24 +126,78 @@ export function Header() {
               </Button>
             )}
             <Hidden mdDown>
-              <Link href="/">
-                <a
-                  style={{
-                    textDecoration: "none",
-                    fontWeight: "bold",
-                    marginRight: 10,
-                    paddingRight: 10,
-                    color: "#fff",
-                  }}
-                >
-                  Social Media
-                </a>
-              </Link>
+              <Button
+                size="small"
+                sx={{
+                  mr: 1,
+                  py: 0.1,
+                  color: "#fff",
+                }}
+                onClick={(e) => setAnchorEl(e.currentTarget)}
+              >
+                Social Media
+              </Button>
             </Hidden>
           </Box>
         </Box>
       </Box>
       <BurgerMenu open={menu} onClose={() => setMenu(false)} />
+      <Menu
+        anchorEl={anchorEl}
+        open={!!anchorEl}
+        onClose={() => setAnchorEl(null)}
+        sx={{
+          mt: 1,
+          "& .MuiPaper-root": {
+            minWidth: "150px",
+            backgroundColor: "neutral.n4",
+          },
+        }}
+      >
+        <MuiMenuItem
+          onClick={() => router.push("https://twitter.com/Cryptalglobal")}
+        >
+          <ListItemIcon>
+            <SvgIcon
+              htmlColor="#fff"
+              viewBox="0 0 25 25"
+              fontSize="small"
+              component={TwitterIcon}
+            />
+          </ListItemIcon>
+          <ListItemText>Twitter</ListItemText>
+        </MuiMenuItem>
+        <MuiMenuItem
+          onClick={() => router.push("https://t.me/cryptal_platform")}
+        >
+          <ListItemIcon>
+            <SvgIcon
+              htmlColor="#fff"
+              viewBox="0 0 25 25"
+              fontSize="small"
+              component={TelegramIcon}
+            />
+          </ListItemIcon>
+          <ListItemText>Telegram</ListItemText>
+        </MuiMenuItem>
+        <MuiMenuItem
+          onClick={() =>
+            router.push(
+              "https://www.youtube.com/channel/UCSVUUS0yvvTOSoVJ_NsgR_Q"
+            )
+          }
+        >
+          <ListItemIcon>
+            <SvgIcon
+              htmlColor="#fff"
+              viewBox="0 0 25 25"
+              fontSize="small"
+              component={YoutubeIcon}
+            />
+          </ListItemIcon>
+          <ListItemText>Youtube</ListItemText>
+        </MuiMenuItem>
+      </Menu>
     </>
   );
 }

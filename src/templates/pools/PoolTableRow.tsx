@@ -10,16 +10,19 @@ import {
 import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
 import CalculatorIcon from "src/icons/CalculatorIcon.svg";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Modal, Calculator } from "src/shared/components";
+import { PoolType } from "./types";
+import moment from "moment";
 
 interface PoolTableRowProps {
-  status: "live" | "soon";
+  item: PoolType;
 }
-export function PoolTableRow({ status }: PoolTableRowProps) {
+export function PoolTableRow({ item }: PoolTableRowProps) {
   const isMobile = useIsMobile();
   const [collapse, setCollapse] = useState(false);
   const [calcModal, setCalcModal] = useState(false);
+  const started = useMemo(() => item.start_date < new Date().getTime(), [item]);
   return (
     <Grid
       container
@@ -30,9 +33,11 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           <Grid item xs={5}>
             <Box>
               <Typography variant="h6" fontWeight="bold">
-                VENUS DAI
+                {item.name ?? "-"}
               </Typography>
-              <Typography variant="caption">Earn DAI Interest</Typography>
+              <Typography variant="caption">
+                {item.describtion ?? "-"}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={3}>
@@ -81,14 +86,13 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
                 <Box display="flex" flexDirection="column">
                   <Typography variant="caption">Space Available</Typography>
                   <Typography variant="h6" fontWeight="bold">
-                    76000 DAI
+                    {item.total_shares ?? " - "} USDT
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", height: 1 }}>
                   <Box
                     sx={{
-                      bgcolor:
-                        status === "live" ? "error.main" : "text.primary",
+                      bgcolor: started ? "error.main" : "text.primary",
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
@@ -97,11 +101,15 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
                     }}
                   />
                   <Typography variant="body1">
-                    {status === "live" ? "Live" : "Soon"}
+                    {started ? "Live" : "Soon"}
                   </Typography>
                 </Box>
               </Box>
-              <Button fullWidth variant="contained">
+              <Button
+                onClick={() => setCalcModal(true)}
+                fullWidth
+                variant="contained"
+              >
                 ENABLE
               </Button>
             </Grid>
@@ -112,9 +120,11 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
           <Grid item xs={2}>
             <Box>
               <Typography variant="h5" fontWeight="bold">
-                VENUS DAI
+                {item.name ?? "-"}
               </Typography>
-              <Typography variant="caption">Earn DAI Interest</Typography>
+              <Typography variant="caption">
+                {item.describtion ?? "-"}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={2}>
@@ -122,7 +132,7 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
               <Typography variant="caption">APY</Typography>
               <Box display="flex" alignItems="flex-start">
                 <Typography variant="h5" fontWeight="bold" mr={0.5}>
-                  23%
+                  {item.APY ?? " - "}%
                 </Typography>
                 <IconButton onClick={() => setCalcModal((prev) => !prev)}>
                   <SvgIcon viewBox="0 0 24 24" component={CalculatorIcon} />
@@ -134,21 +144,21 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
             <Box>
               <Typography variant="caption">Total Deposit</Typography>
               <Typography variant="h5" fontWeight="bold">
-                45000 DAI
+                {item.sold_shares ?? " - "} USDT
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={2}>
             <Typography variant="caption">Space Available</Typography>
             <Typography variant="h5" fontWeight="bold">
-              76000 DAI
+              {item.total_shares ?? " - "} USDT
             </Typography>
           </Grid>
           <Grid item xs={1}>
             <Box sx={{ display: "flex", alignItems: "center", height: 1 }}>
               <Box
                 sx={{
-                  bgcolor: status === "live" ? "error.main" : "text.primary",
+                  bgcolor: started ? "error.main" : "text.primary",
                   width: "8px",
                   height: "8px",
                   borderRadius: "50%",
@@ -157,7 +167,7 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
                 }}
               />
               <Typography variant="body1">
-                {status === "live" ? "Live" : "Soon"}
+                {started ? "Live" : "Soon"}
               </Typography>
             </Box>
           </Grid>
@@ -170,13 +180,15 @@ export function PoolTableRow({ status }: PoolTableRowProps) {
                 height: 1,
               }}
             >
-              <Button variant="outlined">ENABLE</Button>
+              <Button onClick={() => setCalcModal(true)} variant="outlined">
+                ENABLE
+              </Button>
             </Box>
           </Grid>
         </>
       )}
       <Modal open={calcModal} onClose={() => setCalcModal((prev) => !prev)}>
-        <Calculator />
+        <Calculator apy={item.APY} />
       </Modal>
     </Grid>
   );

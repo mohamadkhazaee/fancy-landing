@@ -1,9 +1,12 @@
 import { Grid, Box, Typography, Hidden } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { TermsModal } from "src/templates/auth/signup/TermsModal";
 import { MenuItem } from "./MenuItem";
 
 export function Footer() {
+  const [modal, setModal] = useState(false);
   return (
     <>
       <Box
@@ -107,10 +110,12 @@ export function Footer() {
               }}
             >
               <Typography
+                onClick={() => setModal(true)}
                 variant="subtitle1"
                 sx={{
                   color: "neutral.mute",
                   display: { xs: "none", md: "block" },
+                  cursor: "pointer",
                 }}
               >
                 Terms of Use | Privacy Notice{" "}
@@ -141,6 +146,7 @@ export function Footer() {
           />
         </Box>
       </Hidden> */}
+      <TermsModal open={modal} onClose={() => setModal(false)} />
     </>
   );
 }

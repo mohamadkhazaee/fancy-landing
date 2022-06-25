@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { ElementType, ReactNode } from "react";
 interface SidebarMenuItemProps {
   title: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   soon?: boolean;
   href?: string;
 }
@@ -28,7 +28,7 @@ export function SidebarMenuItem({
       onClick={() => (href ? push(href) : "")}
       sx={{ display: "flex", py: 1.5 }}
     >
-      <ListItemIcon>{icon}</ListItemIcon>
+      {icon && <ListItemIcon>{icon}</ListItemIcon>}
       <ListItemText sx={{ color: "text.secondary" }}>{title}</ListItemText>
       {soon && (
         <Chip

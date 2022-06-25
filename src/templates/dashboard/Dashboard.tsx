@@ -3,7 +3,19 @@ import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "./InfoWidget";
 import { PoolTableRow } from "src/templates/pools";
 import { Banner } from "./Banner";
+import { useCallback, useEffect, useState } from "react";
+import { PoolType } from "../pools/types";
+import { getPoolsApiCall } from "src/api";
 export function Dashboard() {
+  const [pools, setPools] = useState<PoolType[]>();
+  const getPools = useCallback(() => {
+    getPoolsApiCall().then((res) => {
+      setPools(res.data.result.pools as PoolType[]);
+    });
+  }, []);
+  useEffect(() => {
+    getPools();
+  }, [getPools]);
   return (
     <DashboardLayout title="Dashboard">
       <Grid container spacing={3}>
@@ -41,8 +53,11 @@ export function Dashboard() {
                 sx={{ bgcolor: "neutral.n4", mt: 3, mb: 1, px: 0 }}
                 label="High APR, low risk."
               />
-              <PoolTableRow status="live" />
-              <PoolTableRow status="soon" />
+              {pools
+                ?.filter((_, index) => index < 2)
+                .map((i) => (
+                  <PoolTableRow key={i._id} item={i} />
+                ))}
             </Box>
           </InfoWidget>
         </Grid>

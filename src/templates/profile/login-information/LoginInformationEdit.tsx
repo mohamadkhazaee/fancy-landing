@@ -36,7 +36,7 @@ export function LoginInformationEdit() {
             variant="contained"
             sx={{ mt: 3 }}
           >
-            Edit Profile
+            Change Password
           </Button>
         </Box>
         <Image

@@ -35,14 +35,17 @@ function CalculatorMenuItem() {
       </ListItemIcon>
       <Hidden mdDown>
         <Typography variant="body1" fontWeight="bold">
-          DAI
+          USDT
         </Typography>
       </Hidden>
     </Box>
   );
 }
 
-export function Calculator() {
+interface CalculatorType {
+  apy: number;
+}
+export function Calculator({ apy = 20 }: CalculatorType) {
   const [value, setValue] = useState("");
   return (
     <Box
@@ -148,7 +151,7 @@ export function Calculator() {
         <Box>
           <Typography variant="caption">APY</Typography>
           <Typography variant="h6" fontWeight="bold" color="success.light">
-            20%
+            {apy}%
           </Typography>
         </Box>
         <Box>
@@ -156,13 +159,15 @@ export function Calculator() {
           <Typography variant="h6" fontWeight="bold">
             {!value.length
               ? "-"
-              : `$${parseFloat(((+value * 0.2) / 12).toFixed(4))}`}
+              : `$ ${parseFloat(((+value * (apy / 100)) / 12).toFixed(4))}`}
           </Typography>
         </Box>
         <Box>
           <Typography variant="caption">Yearly earnings</Typography>
           <Typography variant="h6" fontWeight="bold">
-            {!value.length ? "-" : `$${parseFloat((+value * 0.2).toFixed(4))}`}
+            {!value.length
+              ? "-"
+              : `$ ${parseFloat((+value * (apy / 100)).toFixed(4))}`}
           </Typography>
         </Box>
       </Box>
