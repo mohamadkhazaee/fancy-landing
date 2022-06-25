@@ -43,7 +43,7 @@ function CalculatorMenuItem() {
 }
 
 interface CalculatorType {
-  apy: number;
+  apy?: number;
 }
 export function Calculator({ apy = 20 }: CalculatorType) {
   const [value, setValue] = useState("");
