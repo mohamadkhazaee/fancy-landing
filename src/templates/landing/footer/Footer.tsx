@@ -50,7 +50,6 @@ export function Footer() {
               >
                 <Typography variant="body1">Developers</Typography>
                 <MenuItem title="Github" />
-                <MenuItem title="Audits" />
                 <MenuItem title="Whitepaper" />
               </Box>
             </Box>
@@ -69,9 +68,18 @@ export function Footer() {
                 sx={{ alignItems: { xs: "center", md: "flex-start" } }}
               >
                 <Typography variant="body1">Community</Typography>
-                <MenuItem title="Twitter" />
-                <MenuItem title="Telegram" />
-                <MenuItem title="Discord" />
+                <MenuItem
+                  title="Twitter"
+                  href="https://twitter.com/Cryptalglobal"
+                />
+                <MenuItem
+                  href="https://t.me/cryptal_platform"
+                  title="Telegram"
+                />
+                <MenuItem
+                  title="Youtube"
+                  href="https://www.youtube.com/channel/UCSVUUS0yvvTOSoVJ_NsgR_Q"
+                />
               </Box>
             </Box>
           </Grid>
@@ -90,8 +98,8 @@ export function Footer() {
               >
                 <Typography variant="body1">About</Typography>
                 <MenuItem title="Contact Us" />
-                <MenuItem title="Blog" />
-                <MenuItem title="FAQ" />
+                <MenuItem title="/blog" />
+                <MenuItem title="FAQ" href="/faq" />
               </Box>
             </Box>
           </Grid>
@@ -118,7 +126,7 @@ export function Footer() {
                   cursor: "pointer",
                 }}
               >
-                Terms of Use | Privacy Notice{" "}
+                Terms & Conditions
               </Typography>
               <Typography variant="subtitle1" sx={{ color: "neutral.mute" }}>
                 Copyright © 2022 Cryptal.eco all rights reserved
