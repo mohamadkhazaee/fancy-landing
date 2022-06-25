@@ -98,7 +98,7 @@ export function Footer() {
               >
                 <Typography variant="body1">About</Typography>
                 <MenuItem title="Contact Us" />
-                <MenuItem title="/blog" />
+                <MenuItem title="Blog" href="/blog" />
                 <MenuItem title="FAQ" href="/faq" />
               </Box>
             </Box>
