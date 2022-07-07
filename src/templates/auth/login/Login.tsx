@@ -6,8 +6,8 @@ import { LoginForm } from "./LoginForm";
 import { useContext } from "react";
 import { UserContext } from "src/contexts";
 export function Login() {
-  const user = useContext(UserContext);
-  console.log(user);
+  const { profile } = useContext(UserContext);
+  console.log(profile);
 
   return (
     <AuthLayout gradiantSrc="/BGred.svg">

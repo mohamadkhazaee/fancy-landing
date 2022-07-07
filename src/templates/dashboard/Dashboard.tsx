@@ -5,9 +5,13 @@ import { PoolTableRow } from "src/templates/pools";
 import { Banner } from "./Banner";
 import { useCallback, useEffect, useState } from "react";
 import { PoolType } from "../pools/types";
-import { getPoolsApiCall } from "src/api";
+import { getCopperApi, getPoolsApiCall } from "src/api";
+import { useRouter } from "next/router";
+
 export function Dashboard() {
   const [pools, setPools] = useState<PoolType[]>();
+  const { push } = useRouter();
+  const [copperPrice, setCopperPrice] = useState();
   const getPools = useCallback(() => {
     getPoolsApiCall().then((res) => {
       setPools(res.data.result.pools as PoolType[]);
@@ -16,6 +20,11 @@ export function Dashboard() {
   useEffect(() => {
     getPools();
   }, [getPools]);
+  useEffect(() => {
+    getCopperApi().then((res) => {
+      setCopperPrice(res.data?.[res.data?.length - 1]?.price);
+    });
+  }, []);
   return (
     <DashboardLayout title="Dashboard">
       <Grid container spacing={3}>
@@ -23,14 +32,28 @@ export function Dashboard() {
           <InfoWidget
             title="Portfolio Balance"
             value="$5,100.85"
-            action={<Button variant="outlined">withdraw</Button>}
+            action={
+              <Button
+                onClick={() => push("/dashboard/portfolio")}
+                variant="outlined"
+              >
+                withdraw
+              </Button>
+            }
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Copper rater"
-            value="$9.835"
-            action={<Button variant="outlined">withdraw</Button>}
+            value={copperPrice ? `$ ${copperPrice}` : " - "}
+            action={
+              <Button
+                onClick={() => push("https://metals-api.com/")}
+                variant="outlined"
+              >
+                Show Chart
+              </Button>
+            }
           />
         </Grid>
         <Grid item xs={12} md={4}>

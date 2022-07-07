@@ -3,7 +3,18 @@ import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "../dashboard/InfoWidget";
 import { PoolTableRow } from "src/templates/pools";
 import { PortfolioTableRow } from "./PortfolioTableRow";
+import { useCallback, useEffect, useState } from "react";
+import { getTransactions } from "src/api";
 export function Portfolio() {
+  const [transactions, setTransactions] = useState();
+  const getList = useCallback(() => {
+    getTransactions().then((res) => {
+      setTransactions(res.data.result.transactions);
+    });
+  }, []);
+  useEffect(() => {
+    getList();
+  }, [getList]);
   return (
     <DashboardLayout
       title="Portfolio"
@@ -12,20 +23,20 @@ export function Portfolio() {
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
           <InfoWidget
-            title="Protected Value"
+            title="Balance"
             value="$5,100.85"
             action={<Button variant="outlined">withdraw</Button>}
           />
         </Grid>
         <Grid item xs={12} md={4}>
           <InfoWidget
-            title="Climable Value"
+            title=" Claimable Interest"
             value="$9.835"
             action={<Button variant="outlined">Upgrade</Button>}
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <InfoWidget title="Total Fees" value="Base" />
+          <InfoWidget title="Loyalty level" value="Base" />
         </Grid>
         <Grid item xs={12}>
           <Box

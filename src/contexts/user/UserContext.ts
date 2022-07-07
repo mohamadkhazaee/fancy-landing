@@ -7,6 +7,8 @@ export type Profile = {
   transactions: any[];
   wallet_address: string;
   _id: string;
+  totp_active: boolean;
+  newsletter: boolean;
 };
 export type UserContextType = {
   profile: Profile | undefined;

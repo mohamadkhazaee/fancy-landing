@@ -9,8 +9,48 @@ import {
   Button,
 } from "@mui/material";
 import Image from "next/image";
+import { useSnackbar } from "notistack";
+import { useCallback, useState } from "react";
+import { emailSubscribe } from "src/api";
 import ChevronRightIcon from "src/icons/ChevronRightIcon.svg";
+const emailRegex =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 export function GetUpdates() {
+  const [email, setEmail] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
+  const handleSubmit = useCallback(() => {
+    if (!email) {
+      enqueueSnackbar("Please enter your Email first", {
+        variant: "error",
+      });
+    } else if (!email.match(emailRegex)) {
+      enqueueSnackbar("Email is not valid", {
+        variant: "error",
+      });
+    } else {
+      emailSubscribe(email)
+        .then((res) => {
+          enqueueSnackbar("Operation was successfull", {
+            variant: "success",
+          });
+        })
+        .catch((err) => {
+          if (err.response.data.code === 403) {
+            enqueueSnackbar(
+              "you subscribed news letter with this email before",
+              {
+                variant: "error",
+              }
+            );
+          } else {
+            enqueueSnackbar("Try again", {
+              variant: "error",
+            });
+          }
+        });
+    }
+  }, [email, enqueueSnackbar]);
   return (
     <Box
       sx={{
@@ -91,11 +131,13 @@ export function GetUpdates() {
         </Hidden>
         <Box sx={{ flexGrow: 1, maxWidth: { md: 500 }, width: 1 }}>
           <TextField
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Your Email"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
-                  <IconButton>
+                  <IconButton onClick={handleSubmit}>
                     <SvgIcon viewBox="0 0 40 25" component={ChevronRightIcon} />
                   </IconButton>
                 </InputAdornment>
@@ -121,6 +163,7 @@ export function GetUpdates() {
           <Button
             variant="contained"
             fullWidth
+            onClick={handleSubmit}
             sx={{ py: 2, borderRadius: 2, mt: 2, display: { md: "none" } }}
           >
             Subscribe

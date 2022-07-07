@@ -45,17 +45,13 @@ export function Header({ toggleMenu, open }: HeaderProps) {
         path: "/",
         domain: router.basePath,
       });
-      Cookies.remove(METAMASK_INFO_KEYS.SIGNITURE, {
-        path: "/",
-        domain: router.basePath,
-      });
       setLoading(false);
       setResetComp(true);
     } else {
       if (typeof window.ethereum !== "undefined") {
         setLoading(true);
         await window.ethereum.enable();
-        const message = "Hello from Ethereum Stack Exchange!";
+        const message = "Hello from Cryptal Global";
         const accounts = await window.ethereum.request({
           method: "eth_accounts",
         });

@@ -12,9 +12,6 @@ interface ReferralModalProps {
 }
 export function ReferralModal({ open, onClose }: ReferralModalProps) {
   const { profile } = useContext(UserContext);
-  useEffect(() => {
-    console.log(profile);
-  }, [profile]);
 
   const { enqueueSnackbar } = useSnackbar();
   const [isCopied, setCopied] = useClipboard(

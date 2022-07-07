@@ -12,6 +12,7 @@ export function LoginForm() {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [needOtp, setNeedOtp] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,11 +32,15 @@ export function LoginForm() {
         })
         .catch((err) => {
           setLoading(false);
-          err.response.data.result.errors.forEach((element: string) => {
-            enqueueSnackbar(element, {
-              variant: "error",
+          if (err.response.status === 401) {
+            setNeedOtp(true);
+          } else {
+            err.response.data.result?.errors?.forEach((element: string) => {
+              enqueueSnackbar(element, {
+                variant: "error",
+              });
             });
-          });
+          }
         });
     },
     [router, enqueueSnackbar]
@@ -93,6 +98,34 @@ export function LoginForm() {
           </Typography>
         )}
       </Box>
+      {needOtp && (
+        <Box mb={errors?.email?.message ? 3 : 4}>
+          <TextField
+            type="password"
+            variant="outlined"
+            label="Two Factor Code"
+            {...register("totp", {
+              required: {
+                value: true,
+                message: "Two Factor Code is Required",
+              },
+              minLength: {
+                value: 6,
+                message: "length is 6 character",
+              },
+              maxLength: {
+                value: 6,
+                message: "length is 6 character",
+              },
+            })}
+          />
+          {errors?.totp && (
+            <Typography variant="caption" color="error.main" fontWeight="bold">
+              {errors.totp.message}
+            </Typography>
+          )}
+        </Box>
+      )}
       <LoadingButton
         sx={{ py: 1.5, fontSize: "1.2rem" }}
         fullWidth
