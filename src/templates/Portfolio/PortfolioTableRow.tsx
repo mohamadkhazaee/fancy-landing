@@ -10,13 +10,28 @@ import {
 } from "@mui/material";
 import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import CancelIcon from "src/icons/CancelIcon.svg";
 import CalculatorIcon from "src/icons/CalculatorIcon.svg";
 import { Modal, Calculator } from "src/shared/components";
-export function PortfolioTableRow() {
+import { PoolType } from "../pools/types";
+import { TransactionType } from "./types";
+
+interface PortfolioTableRowProps {
+  pool: PoolType | undefined;
+  transaction: TransactionType;
+}
+export function PortfolioTableRow({
+  pool,
+  transaction,
+}: PortfolioTableRowProps) {
   const [collapse, setCollapse] = useState(false);
   const [calcModal, setCalcModal] = useState(false);
+  const started = useMemo(
+    () =>
+      pool?.start_date ? pool?.start_date < new Date().getTime() : undefined,
+    [pool]
+  );
 
   const isMobile = useIsMobile();
   return (
@@ -34,14 +49,16 @@ export function PortfolioTableRow() {
           <Grid item xs={5}>
             <Box>
               <Typography variant="h6" fontWeight="bold">
-                VENUS DAI
+                {pool?.name ?? " - "}
               </Typography>
-              <Typography variant="caption">Earn DAI Interest</Typography>
+              <Typography variant="caption">
+                {pool?.describtion ?? " - "}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={3}>
             <Box>
-              <Typography variant="caption">$ 68,000</Typography>
+              <Typography variant="caption">$ {pool?.total_shares}</Typography>
               <Typography variant="h6" fontWeight="bold">
                 Liquidity
               </Typography>
@@ -56,7 +73,7 @@ export function PortfolioTableRow() {
                   fontWeight="bold"
                   mr={{ xs: 0.25, md: 0.5 }}
                 >
-                  23%
+                  {pool?.APY ?? " - "}%
                 </Typography>
                 <IconButton
                   onClick={() => setCalcModal((prev) => !prev)}
@@ -85,14 +102,13 @@ export function PortfolioTableRow() {
                 <Box display="flex" flexDirection="column">
                   <Typography variant="caption">Space Available</Typography>
                   <Typography variant="h6" fontWeight="bold">
-                    76000 DAI
+                    $ {pool?.total_shares}
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", height: 1 }}>
                   <Box
                     sx={{
-                      bgcolor:
-                        status === "live" ? "error.main" : "text.primary",
+                      bgcolor: started ? "error.main" : "text.primary",
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
@@ -101,7 +117,7 @@ export function PortfolioTableRow() {
                     }}
                   />
                   <Typography variant="body1">
-                    {status === "live" ? "Live" : "Soon"}
+                    {started ? "Live" : "Soon"}
                   </Typography>
                 </Box>
               </Box>
@@ -118,9 +134,9 @@ export function PortfolioTableRow() {
               <Image width={56} height={46} src="/usdt.svg" alt="usdt" />
               <Box ml={1}>
                 <Typography variant="h5" fontWeight="bold">
-                  DAI
+                  USDT
                 </Typography>
-                <Typography variant="caption">DAI</Typography>
+                <Typography variant="caption">USDT</Typography>
               </Box>
             </Box>
           </Grid>
@@ -128,7 +144,7 @@ export function PortfolioTableRow() {
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Typography variant="caption">Deposit</Typography>
               <Typography variant="h6" fontWeight="bold">
-                $30.54
+                ${transaction.amount}
               </Typography>
             </Box>
           </Grid>
@@ -137,7 +153,7 @@ export function PortfolioTableRow() {
               <Typography variant="caption">APY</Typography>
               <Box display="flex" alignItems="flex-start">
                 <Typography variant="h5" fontWeight="bold" mr={0.5}>
-                  23%
+                  {pool?.APY ?? " - "}%
                 </Typography>
                 <IconButton onClick={() => setCalcModal((prev) => !prev)}>
                   <SvgIcon viewBox="0 0 24 24" component={CalculatorIcon} />
@@ -148,14 +164,14 @@ export function PortfolioTableRow() {
           <Grid item xs={2}>
             <Typography variant="caption">Liquidity</Typography>
             <Typography variant="h5" fontWeight="bold">
-              15,000,354
+              {pool?.total_shares}
             </Typography>
           </Grid>
           <Grid item xs={1}>
             <Box sx={{ display: "flex", alignItems: "center", height: 1 }}>
               <Box
                 sx={{
-                  bgcolor: status === "live" ? "error.main" : "text.primary",
+                  bgcolor: started ? "error.main" : "text.primary",
                   width: "8px",
                   height: "8px",
                   borderRadius: "50%",
@@ -164,7 +180,7 @@ export function PortfolioTableRow() {
                 }}
               />
               <Typography variant="body1">
-                {status === "live" ? "Live" : "Soon"}
+                {started ? "Live" : "Soon"}
               </Typography>
             </Box>
           </Grid>

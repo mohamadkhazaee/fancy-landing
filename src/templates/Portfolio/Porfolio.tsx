@@ -3,15 +3,40 @@ import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "../dashboard/InfoWidget";
 import { PoolTableRow } from "src/templates/pools";
 import { PortfolioTableRow } from "./PortfolioTableRow";
-import { useCallback, useEffect, useState } from "react";
-import { getTransactions } from "src/api";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { getPoolsApiCall, getTransactions } from "src/api";
+import { TransactionType } from "./types";
+import { PoolType } from "../pools/types";
 export function Portfolio() {
-  const [transactions, setTransactions] = useState();
+  const [transactions, setTransactions] = useState<TransactionType[]>();
   const getList = useCallback(() => {
     getTransactions().then((res) => {
-      setTransactions(res.data.result.transactions);
+      setTransactions(res.data.result.transactions as TransactionType[]);
     });
   }, []);
+  const [pools, setPools] = useState<PoolType[]>();
+  const getPools = useCallback(() => {
+    getPoolsApiCall().then((res) => {
+      setPools(res.data.result.pools as PoolType[]);
+    });
+  }, []);
+  const balance = useMemo(() => {
+    return transactions?.reduce((acc, i) => {
+      acc += i.amount || 0;
+      return acc;
+    }, 0);
+  }, [transactions]);
+  const loyaltyLevel = useMemo(() => {
+    if (balance) {
+      if (balance <= 5000) return "Basic";
+      if (balance > 5000 && balance <= 300000) return "Silver";
+      if (balance > 30000 && balance <= 60000) return "Gold";
+      if (balance > 60000) return "Platinum";
+    } else return "Basic";
+  }, [balance]);
+  useEffect(() => {
+    getPools();
+  }, [getPools]);
   useEffect(() => {
     getList();
   }, [getList]);
@@ -24,7 +49,7 @@ export function Portfolio() {
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Balance"
-            value="$5,100.85"
+            value={`$${balance}`}
             action={<Button variant="outlined">withdraw</Button>}
           />
         </Grid>
@@ -36,7 +61,7 @@ export function Portfolio() {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <InfoWidget title="Loyalty level" value="Base" />
+          <InfoWidget title="Loyalty level" value={loyaltyLevel} />
         </Grid>
         <Grid item xs={12}>
           <Box
@@ -50,9 +75,15 @@ export function Portfolio() {
               height: 1,
             }}
           >
-            <PortfolioTableRow />
-            <PortfolioTableRow />
-            <PortfolioTableRow />
+            {transactions?.map((i) => {
+              const pool = pools?.find(
+                (pool) => pool.address === i.pool_address
+              );
+              console.log(pool);
+              return (
+                <PortfolioTableRow key={i._id} transaction={i} pool={pool} />
+              );
+            })}
           </Box>
         </Grid>
       </Grid>

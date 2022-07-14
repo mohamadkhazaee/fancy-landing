@@ -75,6 +75,7 @@ export function Sidebar({ menu }: SidebarProps) {
         />
         <SidebarMenuItem
           title="Swap"
+          href="/dashboard/swap"
           icon={
             <SvgIcon
               viewBox="0 0 36 30"

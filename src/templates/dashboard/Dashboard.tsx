@@ -3,10 +3,11 @@ import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "./InfoWidget";
 import { PoolTableRow } from "src/templates/pools";
 import { Banner } from "./Banner";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { PoolType } from "../pools/types";
-import { getCopperApi, getPoolsApiCall } from "src/api";
+import { getCopperApi, getPoolsApiCall, getTransactions } from "src/api";
 import { useRouter } from "next/router";
+import { TransactionType } from "../Portfolio/types";
 
 export function Dashboard() {
   const [pools, setPools] = useState<PoolType[]>();
@@ -25,6 +26,33 @@ export function Dashboard() {
       setCopperPrice(res.data?.[res.data?.length - 1]?.price);
     });
   }, []);
+
+  const [transactions, setTransactions] = useState<TransactionType[]>();
+  const getList = useCallback(() => {
+    getTransactions().then((res) => {
+      setTransactions(res.data.result.transactions as TransactionType[]);
+    });
+  }, []);
+  const balance = useMemo(() => {
+    return transactions?.reduce((acc, i) => {
+      acc += i.amount || 0;
+      return acc;
+    }, 0);
+  }, [transactions]);
+  const loyaltyLevel = useMemo(() => {
+    if (balance) {
+      if (balance <= 5000) return "Basic";
+      if (balance > 5000 && balance <= 300000) return "Silver";
+      if (balance > 30000 && balance <= 60000) return "Gold";
+      if (balance > 60000) return "Platinum";
+    } else return "Basic";
+  }, [balance]);
+  useEffect(() => {
+    getPools();
+  }, [getPools]);
+  useEffect(() => {
+    getList();
+  }, [getList]);
   return (
     <DashboardLayout title="Dashboard">
       <Grid container spacing={3}>
@@ -59,7 +87,7 @@ export function Dashboard() {
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Loyalty Level"
-            value="Base"
+            value={loyaltyLevel}
             action={<Button variant="outlined">Upgrade</Button>}
           />
         </Grid>

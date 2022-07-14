@@ -57,7 +57,7 @@ export function PoolTableRow({ item }: PoolTableRowProps) {
                   fontWeight="bold"
                   mr={{ xs: 0.25, md: 0.5 }}
                 >
-                  23%
+                  {item.APY ?? " - "}%
                 </Typography>
                 <IconButton
                   onClick={() => setCalcModal((prev) => !prev)}
