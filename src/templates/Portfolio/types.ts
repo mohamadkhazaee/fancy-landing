@@ -9,4 +9,5 @@ export type TransactionType = {
   to: string;
   txid: string;
   _id: string;
+  status: "DONE" | "PENDING" | "RECEIVED";
 };

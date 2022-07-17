@@ -44,8 +44,14 @@ function CalculatorMenuItem() {
 
 interface CalculatorType {
   apy?: number;
+  loading?: boolean;
+  onSubmit: (val: string) => void;
 }
-export function Calculator({ apy = 20 }: CalculatorType) {
+export function Calculator({
+  apy = 20,
+  loading,
+  onSubmit = (val: string) => console.log(val),
+}: CalculatorType) {
   const [value, setValue] = useState("");
   return (
     <Box
@@ -120,6 +126,7 @@ export function Calculator({ apy = 20 }: CalculatorType) {
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           <TextField
+            inputMode="numeric"
             variant="outlined"
             value={value}
             onChange={(e) => setValue(e.target.value)}
@@ -171,8 +178,14 @@ export function Calculator({ apy = 20 }: CalculatorType) {
           </Typography>
         </Box>
       </Box>
-      <Button fullWidth variant="contained" sx={{ py: 1.2, mt: 3 }}>
-        Deposit
+      <Button
+        // disabled={typeof loading === "undefined" ? false : !!loading}
+        onClick={() => onSubmit?.(value)}
+        fullWidth
+        variant="contained"
+        sx={{ py: 1.2, mt: 3 }}
+      >
+        {loading ? "Loading" : "Deposit"}
       </Button>
       <List sx={{ mt: 2 }}>
         <ListItem sx={{ display: "list-item", pt: 0, pb: 1 }}>

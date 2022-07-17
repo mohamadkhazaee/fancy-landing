@@ -10,19 +10,72 @@ import {
 import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
 import CalculatorIcon from "src/icons/CalculatorIcon.svg";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Modal, Calculator } from "src/shared/components";
 import { PoolType } from "./types";
-import moment from "moment";
-
+import Cookies from "js-cookie";
+import { METAMASK_INFO_KEYS } from "../dashboardLayout/Header";
+import Web3 from "web3";
+import { abi } from "./contractInstance";
+import { useSnackbar } from "notistack";
 interface PoolTableRowProps {
   item: PoolType;
 }
 export function PoolTableRow({ item }: PoolTableRowProps) {
+  const { enqueueSnackbar } = useSnackbar();
   const isMobile = useIsMobile();
   const [collapse, setCollapse] = useState(false);
   const [calcModal, setCalcModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const started = useMemo(() => item.start_date < new Date().getTime(), [item]);
+  const web3 = useMemo(() => new Web3(window.ethereum), []);
+  const onSubmit = useCallback(
+    (val: string) => {
+      if (typeof window.ethereum !== "undefined") {
+        setLoading(true);
+        let contract = new web3.eth.Contract(
+          abi,
+          "0xd9ba894e0097f8cc2bbc9d24d308b98e36dc6d02"
+        );
+        const params = [
+          {
+            from: Cookies.get(METAMASK_INFO_KEYS.ADDRESS),
+            to: "0xd9ba894e0097f8cc2bbc9d24d308b98e36dc6d02",
+            gas: web3.utils.toHex(210000), // 30400
+            gasPrice: web3.utils.toHex(2 * 1e9), // 10000000000000,
+            value: "0x0", // 2441406250
+            data: contract.methods
+              .transfer(item.address, web3.utils.toHex(+val * 1e18))
+              .encodeABI(),
+          },
+        ];
+        window.ethereum
+          .request({
+            method: "eth_sendTransaction",
+            params,
+          })
+          .then(() => {
+            setCalcModal(false);
+            enqueueSnackbar(
+              "Transaction sent successfully.you should be able to view it on portfolio page in a few minutes.",
+              {
+                variant: "success",
+              }
+            );
+          })
+          .catch(() => {
+            enqueueSnackbar("Something went wrong.please try again.", {
+              variant: "error",
+            });
+          });
+      } else {
+        enqueueSnackbar("connect to metamast first!", {
+          variant: "error",
+        });
+      }
+    },
+    [enqueueSnackbar, item.address, web3]
+  );
   return (
     <Grid
       container
@@ -188,7 +241,7 @@ export function PoolTableRow({ item }: PoolTableRowProps) {
         </>
       )}
       <Modal open={calcModal} onClose={() => setCalcModal((prev) => !prev)}>
-        <Calculator apy={item.APY} />
+        <Calculator loading={loading} onSubmit={onSubmit} apy={item.APY} />
       </Modal>
     </Grid>
   );

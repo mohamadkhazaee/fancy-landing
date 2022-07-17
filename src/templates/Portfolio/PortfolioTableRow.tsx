@@ -16,24 +16,51 @@ import CalculatorIcon from "src/icons/CalculatorIcon.svg";
 import { Modal, Calculator } from "src/shared/components";
 import { PoolType } from "../pools/types";
 import { TransactionType } from "./types";
+import { withdrawTransaction } from "src/api";
+import { useSnackbar } from "notistack";
+import { LoadingButton } from "@mui/lab";
 
 interface PortfolioTableRowProps {
   pool: PoolType | undefined;
   transaction: TransactionType;
+  refetch: () => void;
 }
 export function PortfolioTableRow({
   pool,
   transaction,
+  refetch,
 }: PortfolioTableRowProps) {
+  const { enqueueSnackbar } = useSnackbar();
   const [collapse, setCollapse] = useState(false);
   const [calcModal, setCalcModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const started = useMemo(
     () =>
       pool?.start_date ? pool?.start_date < new Date().getTime() : undefined,
     [pool]
   );
-
   const isMobile = useIsMobile();
+  const handlwWithdraw = () => {
+    setLoading(true);
+    withdrawTransaction(transaction._id)
+      .then(() => {
+        refetch();
+
+        enqueueSnackbar(
+          "Withdraw request sent successfully. you will be noticed in 24 hours.",
+          {
+            variant: "success",
+          }
+        );
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+        enqueueSnackbar("Try Again", {
+          variant: "error",
+        });
+      });
+  };
   return (
     <Grid
       container
@@ -121,9 +148,26 @@ export function PortfolioTableRow({
                   </Typography>
                 </Box>
               </Box>
-              <Button fullWidth variant="contained">
-                ENABLE
-              </Button>
+              <LoadingButton
+                disabled={
+                  loading ||
+                  transaction.status === "PENDING" ||
+                  transaction.status === "DONE"
+                }
+                loading={loading}
+                onClick={handlwWithdraw}
+                fullWidth
+                variant="contained"
+                sx={{
+                  color: "#fff !important",
+                }}
+              >
+                {loading
+                  ? "LOADING"
+                  : transaction.status === "RECEIVED"
+                  ? "WITHDRAW"
+                  : transaction.status}
+              </LoadingButton>
             </Grid>
           </Collapse>
         </>
@@ -186,7 +230,17 @@ export function PortfolioTableRow({
           </Grid>
           <Grid item xs={2} alignItems="center" display="flex">
             <Box display="flex">
-              <Button
+              <LoadingButton
+                onClick={handlwWithdraw}
+                disabled={
+                  loading ||
+                  transaction.status === "PENDING" ||
+                  transaction.status === "DONE"
+                }
+                loading={loading}
+                sx={{
+                  color: "#fff !important",
+                }}
                 startIcon={
                   <SvgIcon
                     htmlColor="#fff"
@@ -196,14 +250,18 @@ export function PortfolioTableRow({
                 }
                 variant="text"
               >
-                cancel
-              </Button>
+                {loading
+                  ? "LOADING"
+                  : transaction.status === "RECEIVED"
+                  ? "WITHDRAW"
+                  : transaction.status}
+              </LoadingButton>
             </Box>
           </Grid>
         </>
       )}
       <Modal open={calcModal} onClose={() => setCalcModal((prev) => !prev)}>
-        <Calculator />
+        <Calculator onSubmit={(val) => console.log(val)} />
       </Modal>
     </Grid>
   );

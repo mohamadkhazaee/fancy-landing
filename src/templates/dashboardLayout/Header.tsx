@@ -61,8 +61,8 @@ export function Header({ toggleMenu, open }: HeaderProps) {
         });
         connectMetaMask({ message, signature, account: accounts[0] })
           .then(() => {
-            Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, accounts[0]);
-            Cookies.set(METAMASK_INFO_KEYS.ADDRESS, signature);
+            Cookies.set(METAMASK_INFO_KEYS.ADDRESS, accounts[0]);
+            Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, signature);
             enqueueSnackbar("Connected to Metamask successfully", {
               variant: "success",
             });

@@ -1,7 +1,6 @@
 import { Button, Grid, Box, Chip } from "@mui/material";
 import { DashboardLayout } from "../dashboardLayout";
 import { InfoWidget } from "../dashboard/InfoWidget";
-import { PoolTableRow } from "src/templates/pools";
 import { PortfolioTableRow } from "./PortfolioTableRow";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getPoolsApiCall, getTransactions } from "src/api";
@@ -79,9 +78,13 @@ export function Portfolio() {
               const pool = pools?.find(
                 (pool) => pool.address === i.pool_address
               );
-              console.log(pool);
               return (
-                <PortfolioTableRow key={i._id} transaction={i} pool={pool} />
+                <PortfolioTableRow
+                  refetch={getList}
+                  key={i._id}
+                  transaction={i}
+                  pool={pool}
+                />
               );
             })}
           </Box>
