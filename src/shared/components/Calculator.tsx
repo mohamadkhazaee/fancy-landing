@@ -45,7 +45,7 @@ function CalculatorMenuItem() {
 interface CalculatorType {
   apy?: number;
   loading?: boolean;
-  onSubmit: (val: string) => void;
+  onSubmit?: (val: string) => void;
 }
 export function Calculator({
   apy = 20,
