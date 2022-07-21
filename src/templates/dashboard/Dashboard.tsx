@@ -59,7 +59,7 @@ export function Dashboard() {
         <Grid item xs={12} md={4}>
           <InfoWidget
             title="Portfolio Balance"
-            value="$5,100.85"
+            value={!balance ? "$0" : `$${balance}`}
             action={
               <Button
                 onClick={() => push("/dashboard/portfolio")}

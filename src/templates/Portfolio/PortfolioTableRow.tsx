@@ -1,12 +1,12 @@
 import Image from "next/image";
 import {
   Box,
-  Button,
   Grid,
   IconButton,
   SvgIcon,
   Typography,
   Collapse,
+  Button,
 } from "@mui/material";
 import { useIsMobile } from "src/shared/hooks";
 import ArrowDown from "src/icons/ArrowDown.svg";
@@ -19,7 +19,7 @@ import { TransactionType } from "./types";
 import { withdrawTransaction } from "src/api";
 import { useSnackbar } from "notistack";
 import { LoadingButton } from "@mui/lab";
-
+import { calculateProfit } from "src/shared/utils";
 interface PortfolioTableRowProps {
   pool: PoolType | undefined;
   transaction: TransactionType;
@@ -34,18 +34,22 @@ export function PortfolioTableRow({
   const [collapse, setCollapse] = useState(false);
   const [calcModal, setCalcModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [withdrawModal, setWithdrawModal] = useState(false);
+  const profit = useMemo(
+    () => calculateProfit(transaction.date, transaction.amount, pool?.APY || 0),
+    [pool, transaction]
+  );
   const started = useMemo(
     () =>
       pool?.start_date ? pool?.start_date < new Date().getTime() : undefined,
     [pool]
   );
   const isMobile = useIsMobile();
-  const handlwWithdraw = () => {
+  const handleWithdraw = () => {
     setLoading(true);
     withdrawTransaction(transaction._id)
       .then(() => {
         refetch();
-
         enqueueSnackbar(
           "Withdraw request sent successfully. you will be noticed in 24 hours.",
           {
@@ -53,6 +57,7 @@ export function PortfolioTableRow({
           }
         );
         setLoading(false);
+        setWithdrawModal(false);
       })
       .catch(() => {
         setLoading(false);
@@ -85,9 +90,9 @@ export function PortfolioTableRow({
           </Grid>
           <Grid item xs={3}>
             <Box>
-              <Typography variant="caption">$ {pool?.total_shares}</Typography>
+              <Typography variant="caption">$ {pool?.sold_shares}</Typography>
               <Typography variant="h6" fontWeight="bold">
-                Liquidity
+                Total Deposit
               </Typography>
             </Box>
           </Grid>
@@ -155,7 +160,7 @@ export function PortfolioTableRow({
                   transaction.status === "DONE"
                 }
                 loading={loading}
-                onClick={handlwWithdraw}
+                onClick={handleWithdraw}
                 fullWidth
                 variant="contained"
                 sx={{
@@ -231,7 +236,7 @@ export function PortfolioTableRow({
           <Grid item xs={2} alignItems="center" display="flex">
             <Box display="flex">
               <LoadingButton
-                onClick={handlwWithdraw}
+                onClick={() => setWithdrawModal(true)}
                 disabled={
                   loading ||
                   transaction.status === "PENDING" ||
@@ -262,6 +267,23 @@ export function PortfolioTableRow({
       )}
       <Modal open={calcModal} onClose={() => setCalcModal((prev) => !prev)}>
         <Calculator onSubmit={(val) => console.log(val)} />
+      </Modal>
+      <Modal
+        open={withdrawModal}
+        onClose={() => setWithdrawModal((prev) => !prev)}
+      >
+        <Typography textAlign="center" variant="h6">
+          You will recieve ${profit.toFixed(6)}
+        </Typography>
+        <LoadingButton
+          loading={loading}
+          fullWidth
+          sx={{ mt: 3 }}
+          variant="contained"
+          onClick={handleWithdraw}
+        >
+          {loading ? "LOADING" : "CONFIRM"}
+        </LoadingButton>
       </Modal>
     </Grid>
   );

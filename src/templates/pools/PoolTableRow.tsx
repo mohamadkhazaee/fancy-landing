@@ -95,9 +95,12 @@ export function PoolTableRow({ item }: PoolTableRowProps) {
           </Grid>
           <Grid item xs={3}>
             <Box>
-              <Typography variant="caption">$ 68,000</Typography>
+              <Typography variant="caption">
+                {" "}
+                {item.sold_shares ?? " - "} USDT
+              </Typography>
               <Typography variant="h6" fontWeight="bold">
-                Liquidity
+                Total Deposit
               </Typography>
             </Box>
           </Grid>

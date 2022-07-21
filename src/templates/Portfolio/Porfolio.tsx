@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { getPoolsApiCall, getTransactions } from "src/api";
 import { TransactionType } from "./types";
 import { PoolType } from "../pools/types";
+import { calculateProfit } from "src/shared/utils";
 export function Portfolio() {
   const [transactions, setTransactions] = useState<TransactionType[]>();
   const getList = useCallback(() => {
@@ -39,6 +40,18 @@ export function Portfolio() {
   useEffect(() => {
     getList();
   }, [getList]);
+  const claimableIntrest = useMemo(() => {
+    return transactions?.reduce((acc, item) => {
+      acc =
+        acc +
+        calculateProfit(
+          item.date,
+          item.amount,
+          pools?.find((pool) => pool.address === item.pool_address)?.APY || 0
+        );
+      return acc;
+    }, 0);
+  }, [pools, transactions]);
   return (
     <DashboardLayout
       title="Portfolio"
@@ -46,17 +59,12 @@ export function Portfolio() {
     >
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
-          <InfoWidget
-            title="Balance"
-            value={`$${balance}`}
-            action={<Button variant="outlined">withdraw</Button>}
-          />
+          <InfoWidget title="Balance" value={`$${balance}`} />
         </Grid>
         <Grid item xs={12} md={4}>
           <InfoWidget
             title=" Claimable Interest"
-            value="$9.835"
-            action={<Button variant="outlined">Upgrade</Button>}
+            value={`$${claimableIntrest?.toFixed(6)}`}
           />
         </Grid>
         <Grid item xs={12} md={4}>

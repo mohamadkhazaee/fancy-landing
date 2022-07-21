@@ -5,13 +5,14 @@ import Image from "next/image";
 import { HEADER_SIZE, SIDEBAR_SIZE } from "src/styles/theme/consts";
 import MenuIcon from "src/icons/MenuIcon.svg";
 import CloseIcon from "src/icons/CloseIcon.svg";
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 import { COOKIE_NAME } from "src/shared/utils";
 import { useRouter } from "next/router";
 import { connectMetaMask } from "src/api";
 import { useSnackbar } from "notistack";
 import { LoadingButton } from "@mui/lab";
+import { UserContext } from "src/contexts";
 
 export const METAMASK_INFO_KEYS = {
   ADDRESS: "METAMASK_ACCOUNT_ADDRESS",
@@ -27,6 +28,7 @@ interface HeaderProps {
   open: boolean;
 }
 export function Header({ toggleMenu, open }: HeaderProps) {
+  const { profile } = useContext(UserContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [loading, setLoading] = useState(false);
@@ -59,18 +61,15 @@ export function Header({ toggleMenu, open }: HeaderProps) {
           method: "personal_sign",
           params: [message, accounts[0]],
         });
-        connectMetaMask({ message, signature, account: accounts[0] })
-          .then(() => {
-            Cookies.set(METAMASK_INFO_KEYS.ADDRESS, accounts[0]);
-            Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, signature);
-            enqueueSnackbar("Connected to Metamask successfully", {
-              variant: "success",
-            });
-            setLoading(false);
-          })
-          .catch(() => {
-            setLoading(false);
-          });
+        Cookies.set(METAMASK_INFO_KEYS.ADDRESS, accounts[0]);
+        Cookies.set(METAMASK_INFO_KEYS.SIGNITURE, signature);
+        enqueueSnackbar("Connected to Metamask successfully", {
+          variant: "success",
+        });
+        setLoading(false);
+        if (profile?.wallet_address) {
+          connectMetaMask({ message, signature, account: accounts[0] });
+        }
       } else {
         enqueueSnackbar("No Metamask Wallet Detected!", {
           variant: "error",
